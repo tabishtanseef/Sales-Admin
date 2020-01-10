@@ -1,0 +1,29 @@
+[18-Oct-2019 12:53:50 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/include/db_connect.php on line 7
+[18-Oct-2019 12:54:06 UTC] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/include/db_connect.php on line 7
+[19-Oct-2019 04:58:05 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/login.php on line 13
+[19-Oct-2019 07:57:53 UTC] PHP Notice:  Undefined index: city in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/school_list.php on line 10
+[19-Oct-2019 09:58:08 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[19-Oct-2019 10:01:49 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[19-Oct-2019 10:01:57 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[19-Oct-2019 10:09:27 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[19-Oct-2019 10:10:14 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[20-Oct-2019 04:49:53 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[23-Oct-2019 07:42:07 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[23-Oct-2019 07:50:55 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[24-Oct-2019 12:22:05 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 07:57:19 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 07:57:23 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 07:57:27 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 07:57:31 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 09:50:50 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[30-Oct-2019 09:50:55 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[31-Oct-2019 07:45:12 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[31-Oct-2019 07:45:20 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[04-Nov-2019 11:42:40 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[04-Nov-2019 11:57:41 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[04-Nov-2019 12:00:40 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[05-Nov-2019 04:57:12 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
+[05-Nov-2019 05:08:40 UTC] PHP Notice:  Undefined index: user_id in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/profile.php on line 24
+[05-Nov-2019 05:08:49 UTC] PHP Notice:  Undefined index: user_id in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/profile.php on line 24
+[05-Nov-2019 05:27:52 UTC] PHP Notice:  Undefined index: user_id in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/profile.php on line 24
+[05-Nov-2019 05:34:37 UTC] PHP Notice:  Undefined variable: error in /home/rpa16cfpf0mt/public_html/goodluck_sales/adminarea/all_salesman.php on line 37
