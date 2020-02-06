@@ -37,7 +37,7 @@ header ("location:login.php");
 
 th, td{
 text-align:center;
-font-size:11px;
+font-size:12px;
 }
 th{
 color:#E85A4F;
@@ -68,18 +68,17 @@ padding-top:15px;
 <?php include('sidebar.php');?>
 <div class="overlay"></div>
 <nav id="upar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-	<div class="container-fluid">
-		<button type="button" id="sidebarCollapse" class="btn btn-info">
-			<i class="fas fa-align-left"></i>
-			<span>Good Luck Sales</span>
-		</button>
-		
-	</div>
-</nav>
+                <div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Good Luck Sales</span>
+                    </button>
+			
+                    
+                </div>
+            </nav>
 			<br>
-			<br>
-			<br>
-			<br>
+			<br><br>
 <div class="container-fluid old">
 
 	<div class="row sub" style="margin-top:2%;">
@@ -87,49 +86,56 @@ padding-top:15px;
 			<table class="table table-responsive w-100 d-block d-md-table" style="width:100%;">
 				<thead>
 				<th>Sr. No.</th>
-				<th>School Name</th>
-				<th>School Id</th>
-				<th>School Board</th>
-				<th>School Strength</th>
-				<th>School Email</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Day</th>
+				<th>Name</th>
 				<th>Contact No.</th>
-				<th>School Address</th>
-				<th>School City</th>
-				<th>School State</th>
+				<th>Email</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>Purpose</th>
+				<th>Payment GL</th>
+				<th>Payment VP</th>
+				<th>Remarks</th>
 				</thead>
 				<tbody>
-				 <?php
-				 $n=1;
-				 $user_id=$_SESSION['user_id'];
+				<?php
+				$n=1;
+				$user_id=$_SESSION['user_id'];
 				$user_name=$_SESSION['user_name'];
-				$get_attendance="select * from school_list where user_id='$user_id' order by school_name";
+				$get_attendance="select * from bookseller_visit where user_id='$user_id' order by date DESC, id DESC";
 				$run_attendance= mysqli_query($conn, $get_attendance);
 				 
 				while($row_attendance=mysqli_fetch_array($run_attendance))
 				{
-					
-					$s_name = $row_attendance['school_name'];
-					$s_code = $row_attendance['id'];
-					$s_board = $row_attendance['school_board'];
-					$s_strength = $row_attendance['school_strength'];
-					$s_email = $row_attendance['school_email'];
-					$s_contact = $row_attendance['school_contact'];
-					$s_address = $row_attendance['school_address'];
-					$s_state = $row_attendance['school_state'];
-					$s_city = $row_attendance['school_city'];
-					
-					
+					$date = $row_attendance['date'];
+					$time = $row_attendance['time'];
+					$day = $row_attendance['day'];
+					$name = $row_attendance['name'];
+					$num = $row_attendance['num'];
+					$email = $row_attendance['email'];
+					$address = $row_attendance['address'];
+					$city = $row_attendance['city'];
+					$purpose = $row_attendance['purpose'];
+					$payment_gl = $row_attendance['payment_gl'];
+					$payment_vp = $row_attendance['payment_vp'];
+					$remark = $row_attendance['remarks'];
+					$date = date("d-M-Y", strtotime($date));
 				    echo "<tr>
 				    <td>$n</td>
-				    <td>$s_name</td>
-					<td>$s_code</td>
-				    <td>$s_board</td>
-				    <td>$s_strength</td>
-				    <td>$s_email</td>
-				    <td>$s_contact</td>
-				    <td>$s_address</td>
-				    <td>$s_city</td>
-				    <td>$s_state</td>
+				    <td>$date</td>
+				    <td>$time</td>
+				    <td>$day</td>
+				    <td>$name</td>
+				    <td>$num</td>
+				    <td>$email</td>
+				    <td>$address</td>
+				    <td>$city</td>
+				    <td>$purpose</td>
+				    <td>$payment_gl</td>
+				    <td>$payment_vp</td>
+				    <td>$remark</td>
 				    </tr>
 					
 					";
@@ -140,7 +146,9 @@ padding-top:15px;
 				
 				
 			</tbody>
-		</table>
+				</table>
+
+
 		</div>
 	</div>
 </div>

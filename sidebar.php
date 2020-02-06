@@ -15,13 +15,24 @@
 			<a href='p_attendance_register.php'>Attendance Register</a>
 		</li>
 		<li>
-			<a href="#homeSubmenuuu" data-toggle="collapse" aria-expanded="false">Visit</a>
-			<ul class="collapse list-unstyled" id="homeSubmenuuu">
+			<a href="#homSubmenuuu" data-toggle="collapse" aria-expanded="false">Add Visit</a>
+			<ul class="collapse list-unstyled" id="homSubmenuuu">
 				<li>
-					<a href="add_visit.php">Add Visit</a>
+					<a href="add_visit.php">Add School Visit</a>
 				</li>
 				<li>
-					<a href="my_visits.php">My Visits</a>
+					<a href="add_bookseller_visit.php">Add Bookseller Visit</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#homeSubmenuuu" data-toggle="collapse" aria-expanded="false">My Visits</a>
+			<ul class="collapse list-unstyled" id="homeSubmenuuu">
+				<li>
+					<a href="my_visits.php">My School Visits</a>
+				</li>
+				<li>
+					<a href="my_b_visits.php">My Bookseller Visits</a>
 				</li>
 			</ul>
 		</li>
@@ -44,6 +55,17 @@
 				</li>
 				<li>
 					<a href="contact_list.php">Contact Person List</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#pagSubmenu" data-toggle="collapse" aria-expanded="false">Bookseller</a>
+			<ul class="collapse list-unstyled" id="pagSubmenu">
+				<li>
+					<a href="add_bookseller.php">Add Bookseller</a>
+				</li>
+				<li>
+					<a href="bookseller_list.php">Bookseller List</a>
 				</li>
 			</ul>
 		</li>

@@ -7,8 +7,8 @@ if(!isset($_SESSION['user_id'])) {
 	header("Location: login.php");
 }
 
-$error = false;
-$u_name = $_SESSION['user_name'];
+	$error = false;
+	$u_name = $_SESSION['user_name'];
 	$u_id = $_SESSION['user_id'];
 	$state = $_SESSION['school_state'];
 if (isset($_POST['add_visit'])) {
@@ -27,7 +27,6 @@ if (isset($_POST['add_visit'])) {
 	
 	$v_date = mysqli_real_escape_string($conn, $_POST['visit_date']);
 	$r_date = date('Y-m-d', strtotime($v_date. ' - 7 days'))."<br>";
-	
 	
 	if(!isset($_POST['school_city'])){
 		$error = true;
@@ -60,9 +59,7 @@ if (isset($_POST['add_visit'])) {
 	
 	$num = mysqli_real_escape_string($conn, $_POST['num']);
 	
-	
 	if(!$error){
-		
 		//echo "<script>alert($school_id);</script>";
 		$g = "SELECT * FROM visits WHERE date ='$date' and school_name='$school_name' and school_city='$school_city' and specimen_given='$specimen_given' and specimen_required='$specimen_required' and contact_person='$contact_person'";
 		$r = mysqli_query($conn,$g);
@@ -70,7 +67,7 @@ if (isset($_POST['add_visit'])) {
 		if (strlen($ch['id']) != 0)
 		{
 			echo"<script>alert('Visit already added!');</script>";
-		}	
+		}
 		else{
 			if(mysqli_query($conn, "INSERT INTO visits(user_id, user_name, date, time, day, school_comment, supply_through, your_comment, specimen_given, specimen_required, school_state, school_city, school_id, school_name, board, strength, address, contact_person, contact_person_no) VALUES
 			('". $u_id ."','" . $u_name . "','" . $date . "', '". $currentTimeinSeconds ."', '". $day ."', '" . $response . "', '" . $supply . "', '" . $remarks . "', '" . $specimen_given . "','" . $specimen_required . "', '". $state . "','". $school_city ."','". $school_id ."','". $school_name ."','". $board ."','". $strength ."','". $address ."','". $contact_person ."','". $num ."')")) {
@@ -96,48 +93,45 @@ if (isset($_POST['add_visit'])) {
 <html>
 <head>
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="shortcut icon" href="img/favicon.png">
-	<title>Good Luck Sales - Digigoodluck.com</title>
-	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
-	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
-    
-
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/style.css">
-	<script src="js/date_time.js"></script>  
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-	<link href="dist/attention.css" rel="stylesheet">
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcut icon" href="img/favicon.png">
+<title>Good Luck Sales - Digigoodluck.com</title>
+<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
+<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/date_time.js"></script>  
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<link href="dist/attention.css" rel="stylesheet">
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-	.overlay1 {
-		display: none;
-		position: fixed;
-		width: 100vw;
-		height: 100vh;
-		background: rgba(0, 0, 0, 0.7);
-		z-index: 998;
-		opacity: 0;
-		transition: all 0.5s ease-in-out;
-	}
-	.overlay1.active {
-		display: block;
-		opacity: 1;
-	}
-	</style>
+.overlay1 {
+	display: none;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 998;
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+.overlay1.active {
+	display: block;
+	opacity: 1;
+}
+</style>
 </head>
-<body >
+<body>
 <script src="dist/attention.js"></script>
-<script >
+<script>
 function goSuccess(){
 		$('.overlay1').addClass('active');
 		new Attention.Alert({
