@@ -38,7 +38,7 @@ if (isset($_POST['go'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Good Luck Sales - Digigoodluck.com</title>
+    <title>Profile - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
     
@@ -117,35 +117,54 @@ if (isset($_POST['go'])) {
             </nav>
 			<div class="container" style="min-height:500px;">
 			<div class="container out">
-				<div class="row" >
-					<div class="col-md-2" style="margin:auto;">
-						<div class="form-group">
-							<center><a target="_blank" href="manual.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Manual Reporting" class="btn" style="background:#fab017; font-weight:bold;" /></a></center>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-10" style="margin:auto; margin-top:30px;">
+							<div class="form-group">
+								<center><a target="_blank" href="manual.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Manual Reporting" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-2" style="margin:auto;">
-						<div class="form-group">
-							<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="background:#fab017; font-weight:bold;" /></a></center>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="s_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-2" style="margin:auto;">
-						<div class="form-group">
-							<center><a target="_blank" href="attendance_report.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>"><input type="submit" name="" value="Attendance Report" class="btn" style="background:#fab017; font-weight:bold;" /></a></center>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="bookseller_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-2" style="margin:auto;">
-						<div class="form-group">
-							<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Visit Report" class="btn" style="background:#fab017; font-weight:bold;" /></a></center>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="attendance_report.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>"><input type="submit" name="" value="Attendance Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-2" style="margin:auto;">
-						<div class="form-group">
-							<center><a target="_blank" href="summary.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Summary Report" class="btn" style="background:#fab017; font-weight:bold;" /></a></center>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="b_visits_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="summary.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Summary Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="drop_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Drop List" class="btn" style="width:90%; background:red; color:white; font-weight:bold;" /></a></center>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12 col-md-offset-12 well">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12 col-md-offset-12 well">
 							<fieldset>
 								<legend></legend>
 								<div class="row sub" style="margin-top:2%;">
@@ -181,16 +200,15 @@ if (isset($_POST['go'])) {
 											</select>-->
 											</td>
 											</tr>
-											
 											</tbody>
 										</table>
-
-
 									</div>
 								</div>
 							</fieldset>						
-					</div>
+						</div>
+					</div>	
 				</div>	
+			</div>	
 				
 			</div>
 			</div>

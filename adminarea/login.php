@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
 <meta name="description" content="Progress Button Styles: Creative effects for loading buttons" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="img/favicon.png">
-		<title>Good Luck Sales - Digigoodluck.com</title>
+		<title>Login - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
     

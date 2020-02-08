@@ -26,6 +26,10 @@ else if(isset($_GET['salesman_id']) && isset($_GET['salesman']))
 else if(isset($_GET['salesman_id']))
 {
 	$salesman_id =$_GET['salesman_id'];
+	$get_attendance="select * from users where uid ='$salesman_id'";
+	$run_attendance= mysqli_query($conn, $get_attendance);
+	$row_attendance=mysqli_fetch_array($run_attendance);
+	$salesman = $row_attendance['user'];
 }
 else if(isset($_GET['state']) && isset($_GET['city']))
 {
@@ -67,7 +71,7 @@ function school($run_attendance) {
 	$n=1;
 while($row_attendance=mysqli_fetch_array($run_attendance))
 	{
-		
+		$salesman_id = $row_attendance['user_id'];
 		$salesman = $row_attendance['user_name'];
 		$school_id = $row_attendance['id'];
 		$school_name = $row_attendance['school_name'];
@@ -79,10 +83,13 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$school_address = $row_attendance['school_address'];
 		$school_city = $row_attendance['school_city'];
 		$school_state = $row_attendance['school_state'];
+		$is_deleted = $row_attendance['is_deleted'];
 		
-		
-		
+		//<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
+		if($is_deleted==0){
 		echo "<tr title='$salesman'>
+		
+		<td><a href='edit_school.php?edit_id=$school_id'><img src='img/edit.png' style='width:20px; margin:auto;'></a></td>
 		<td>$n</td>
 		<td class='link'>$school_name</td>
 		<td>$school_id</td>
@@ -93,74 +100,61 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		<td>$school_address</td>
 		<td>$school_city</td>
 		<td>$school_state</td>
-		
-		
-		</tr>
-		
-		";
-	  $n++; 
+		</tr>";
+	  $n++;
+		}
 	}	
-	
-	
 }
 ?>
-
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Good Luck Sales - Digigoodluck.com</title>
+    <title>School List - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
-    
-		<link rel="shortcut icon" href="img/favicon.png">
-
+    <link rel="shortcut icon" href="img/favicon.png">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="css/style5.css">
-
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 	<script src="js/date_time.js"></script> 
 	<style>
-
 	th, td{
-	text-align:center;
-	font-size:14px;
+		text-align:center;
+		font-size:14px;
 	}
 	h4, th{
-	color:#E85A4F;
-
+		color:#E85A4F;
 	}
 	.table-responsive {
 		display:block;
 		min-width: rem-calc(1500);
 	}
 	.sub{
-	width:auto;
-	background:white;
-	margin:10px;
-	box-shadow:3px 3px 3px #aaa;
-	border:2px solid #AAA;
-	padding-top:15px;
+		width:auto;
+		background:white;
+		margin:10px;
+		box-shadow:3px 3px 3px #aaa;
+		border:2px solid #AAA;
+		padding-top:15px;
 	}
 	.horizontal-scroll {
-	  overflow: hidden;
-	  overflow-x: auto;
-	  clear: both;
-	  width: 100%;
+		overflow: hidden;
+		overflow-x: auto;
+		clear: both;
+		width: 100%;
 	}
 	.link{
 		font-weight:bold;
 		color:#E85A4F;
 		text-align:left;
 	}
-
 	</style>
 </head>
 
@@ -248,7 +242,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 			else if(isset($state)){
 			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state</h4>";
 			}
-			else if(isset($salesman)){
+			else if(isset($salesman) || isset($salesman_id) ){
 			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
 			}
 			?>
@@ -257,6 +251,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 				<div class="col-sm-12 horizontal-scroll">
 					<table id="school_list" class="table table-hover table-bordered table-striped table-responsive w-100 d-block d-md-table" style="width:100%;">
 						<thead>
+						<th>Edit</th>
 						<th>Sr. No.</th>
 						<th>School Name</th>
 						<th>School ID</th>

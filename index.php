@@ -17,7 +17,7 @@ if (strlen($ch['id']) != 0)
 	
 }
 else{
-	header ("location:attendance.php");
+	header ("location:attendance_and_register.php");
 }
 
 
@@ -107,25 +107,25 @@ body{
 			<div class="col-md-12">
 			<table width="100%">
 			<tr>
-			<td><a href="attendance.php"><img src="img/attendance.png" style="width:80%;">
+			<td><a href="attendance_and_register.php"><img src="img/attendance.png" style="width:80%;">
 			<br>
 			<span>Attendance</span>
 			</a></td>
-			<td><a href="p_attendance_register.php"><img src="img/register.png" style="width:80%;">
+			<td><a href="all_lists.php"><img src="img/register.png" style="width:80%;">
 			<!--<td><a href="p_attendance_register.php"><img src="img/schedule.png" style="width:80%;">-->
 			<br>
-			<span>Register</span>
+			<span>All Lists</span>
 			<!--<span>My Schedule</span>-->
 			</a></td>
 			</tr>
 			<tr>
 			<td><a href="add_visit.php"><img src="img/addvisit.png" style="width:80%;">
 			<br>
-			<span>Add Visit</span>
+			<span>Add School Visit</span>
 			</a></td>
-			<td><a href="my_visits.php"><img src="img/myvisits.png" style="width:80%;">
+			<td><a href="add_bookseller_visit.php"><img src="img/add_b_visit.png" style="width:80%;">
 			<br>
-			<span>My Visits</span>
+			<span>Add Book Seller Visit</span>
 			</a></td>
 			</tr>
 			<tr>
@@ -135,10 +135,10 @@ body{
 			<span>Add School</span>
 			<!--<span>New Orders</span>-->
 			</a></td>
-			<td><a href="school_list.php"><img src="img/school list.png" style="width:80%;">
+			<td><a href="add_bookseller.php"><img src="img/add bookseller.png" style="width:80%;">
 			<!--<td><a href="school_list.php"><img src="img/orders.png" style="width:80%;">-->
 			<br>
-			<span>School List</span>
+			<span>Add Book Seller</span>
 			<!--<span>My Orders</span>-->
 			</a></td>
 			</tr>
@@ -148,10 +148,10 @@ body{
 			<br>
 			<span>Add Contact Person</span>
 			</a></td>
-			<td><a href="contact_list.php"><img src="img/person list.png" style="width:80%;">
+			<td><a href="all_visits.php"><img src="img/myvisits.png" style="width:80%;">
 			<!--<td><a href="contact_list.php"><img src="img/expense.png" style="width:80%;">-->
 			<br>
-			<span>Contact Person List</span>
+			<span>My Visits</span>
 			</a></td>
 			</tr>
 			</table>

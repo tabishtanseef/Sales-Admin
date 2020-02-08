@@ -6,10 +6,10 @@ $id = $_GET['del_id'];
  
 echo "<script>alert($id);<script>";
 
-$sql = "Update visits SET is_deleted = '1' WHERE id='$id'"; 
+$sql = "Update bookseller_visit SET is_deleted = '1' WHERE id='$id'"; 
 if(mysqli_query($conn, $sql)){ 
     echo "<script>alert('Record deleted successfully.');</script>"; 
-	header ("location:visit_report.php");
+	header ("location:b_visits_report.php");
 }  
 else{ 
     echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn); 

@@ -6,60 +6,56 @@ if (!isset($_SESSION['admin_id'])) {
 header ("location:login.php");
 }
 $error = false;
+if(isset($_GET['edit_id']))
+{
+	$_SESSION['school_id'] =$_GET['edit_id'];
+	
+}
+$school_id = $_SESSION['school_id'];
 if (isset($_POST['update'])) {
-
-	$password = mysqli_real_escape_string($conn, $_POST['password']);
-	$cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);	
 	
-	
-	if(strlen($password) < 6) {
-		$error = true;
-		$password_error = "Password must be minimum of 6 characters";
-	}
-	if($password != $cpassword) {
-		$error = true;
-		$cpassword_error = "Password and Confirm Password doesn't match";
-	}
-	if (!$error) {
-		if(mysqli_query($conn, "Update users SET pass= '" . md5($password) . "' where uid = $_SESSION[user_id]")) {
-			$success_message = "Successfully Updated!";
-		} else {
-			$error_message = "Error in Updating...Please try again later!";
+	$name = mysqli_real_escape_string($conn, $_POST['school_name']);
+	$email = strtolower(mysqli_real_escape_string($conn, $_POST['school_email']));
+	$board = strtolower(mysqli_real_escape_string($conn, $_POST['school_board']));
+	$board = strtoupper($board);
+	$num = mysqli_real_escape_string($conn, $_POST['school_contact']);
+	$address = mysqli_real_escape_string($conn, $_POST['school_address']);
+	$strength = mysqli_real_escape_string($conn, $_POST['school_strength']);
+	if(mysqli_query($conn, "Update school_list SET school_name='$name', school_email='$email', school_board='$board', school_strength='$strength', school_contact='$num', school_address='$address' where id ='$school_id'")) {
+		if(mysqli_query($conn, "Update contact_person_list SET school_name='$name' where school_id ='$school_id'")) {
+			if(mysqli_query($conn, "Update visits SET school_name='$name', board='$board', strength='$strength', address='$address' where school_id ='$school_id'")) {
+				$success_message = "Successfully Updated!";
+			}
 		}
+	} else {
+		$error_message = "Error in Updating...Please try again later!";
 	}
 	
 }
 ?>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>Update Profile - Good Luck Sales - Digigoodluck.com</title>
+    <title>Edit School Details - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
-    
-<link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.png">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="css/style5.css">
-
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-<script src="js/date_time.js"></script> 
+	<script src="js/date_time.js"></script> 
 <style>
-
 	th, td{
-	font-weight:bold;
-	text-align:right;
-	color:#32B394;
+		font-weight:bold;
+		text-align:right;
+		color:#32B394;
 	}
-	
-	
 	.table-responsive {
 		display:block;
 		min-width: rem-calc(1500);
@@ -77,6 +73,12 @@ if (isset($_POST['update'])) {
 		overflow-x: auto;
 		clear: both;
 		width: 100%;
+	}
+	
+	.link{
+		font-weight:bold;
+		color:#E85A4F;
+		text-align:left;
 	}
 </style>
 </head>
@@ -100,11 +102,26 @@ if (isset($_POST['update'])) {
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-
+					<?php
+						$get_attendance="select * from school_list where id='$school_id'";
+						$run_attendance= mysqli_query($conn, $get_attendance);
+						$row_attendance=mysqli_fetch_array($run_attendance);
+						$salesman = $row_attendance['user_name'];
+						$school_id = $row_attendance['id'];
+						$school_name = $row_attendance['school_name'];
+						$school_board = $row_attendance['school_board'];
+						$school_strength = $row_attendance['school_strength'];
+						$school_contact = $row_attendance['school_contact'];
+						$school_email = $row_attendance['school_email'];
+						$school_address = $row_attendance['school_address'];
+						$school_city = $row_attendance['school_city'];
+						$school_state = $row_attendance['school_state'];
+						$is_deleted = $row_attendance['is_deleted'];
+					?>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Admin Profile</a>
+                                <a class="nav-link" href="#"><span class="link"><?php echo $school_name;?></span></a>
                             </li>
                         </ul>
                     </div>
@@ -119,37 +136,49 @@ if (isset($_POST['update'])) {
 						<span class="text-danger"><?php if (isset($error_message)) { echo $error_message; } ?></span>
 						<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
 							<fieldset>
-								<legend>Update Profile</legend>
+								<legend>Update School Details</legend>
 								<div class="row sub" style="margin-top:2%;">
 									<div class="col-sm-12 horizontal-scroll">
 										<table class="table table-hover table-responsive w-100 d-block d-md-table" style="width:100%;">
 											<tbody>
 											<tr>
-											<td style="padding-top:20px;" >Name</td>
-											<td><input type="text" name="" readonly value="<?php echo $_SESSION['admin_name']; ?>"  class="form-control" /></td>
+											<td style="padding-top:20px;" >School Id</td>
+											<td><input type="text" name="" readonly value="<?php echo $school_id; ?>"  class="form-control" /></td>
+											</tr>
+											<tr>
+											<td style="padding-top:20px;" >School Name</td>
+											<td><input type="text" name="school_name" value="<?php echo $school_name; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;"><label for="name">Email</label></td>
-											<td><input type="text" name="" readonly value="<?php echo $_SESSION['admin_email']; ?>"  class="form-control" /></td>
+											<td><input type="text" name="school_email" value="<?php echo $school_email; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Contact No.</td>
-											<td><input type="text" name="" readonly value="<?php echo $_SESSION['admin_num']; ?>"  class="form-control" /></td>
+											<td><input type="text" name="school_contact" value="<?php echo $school_contact; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
-											<td style="padding-top:20px;">Password</td>
-											<td><input type="password" name="password" placeholder="Password" required class="form-control" />
-											<span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span></td>
+											<td style="padding-top:20px;"><label for="name">Board</label></td>
+											<td><input type="text" name="school_board" value="<?php echo $school_board; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
-											<td style="padding-top:20px;">Confirm Password</td>
-											<td><input type="password" name="cpassword" placeholder="Confirm Password" required class="form-control" />
-											<span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span></td>
+											<td style="padding-top:20px;">Strength</td>
+											<td><input type="text" name="school_strength" value="<?php echo $school_strength; ?>"  class="form-control" /></td>
+											</tr>
+											<tr>
+											<td style="padding-top:20px;"><label for="name">Address</label></td>
+											<td><input type="text" name="school_address" value="<?php echo $school_address; ?>"  class="form-control" /></td>
+											</tr>
+											<tr>
+											<td style="padding-top:20px;">City</td>
+											<td><input type="text" name="school_city" readonly value="<?php echo $school_city; ?>"  class="form-control" /></td>
+											</tr>
+											<tr>
+											<td style="padding-top:20px;">State</td>
+											<td><input type="text" name="school_state" readonly value="<?php echo $school_state; ?>"  class="form-control" /></td>
 											</tr>
 											</tbody>
 										</table>
-
-
 									</div>
 								</div>
 								

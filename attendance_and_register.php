@@ -6,12 +6,11 @@ session_start();
 if(!isset($_SESSION['user_id'])) {
 	header("Location: login.php");
 }
-$error = false;
-$user_id=$_SESSION['user_id'];
+
+	$user_id=$_SESSION['user_id'];
 	$user_name=$_SESSION['user_name'];
 	$date=date("Y-m-d");
 	date_default_timezone_set("Asia/Calcutta");
-	
 	$currentTimeinSeconds = date("h:i:s");  
 	$timestamp = strtotime($date);
 	$day = date('l', $timestamp);
@@ -22,13 +21,10 @@ $user_id=$_SESSION['user_id'];
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="shortcut icon" href="img/favicon.png">
+	<link rel="shortcut icon" href="img/favicon.png">
 	<title>Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
-    
-
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -41,55 +37,52 @@ $user_id=$_SESSION['user_id'];
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-  
-
 <style>
 
 th, td{
-text-align:center;
-font-size:11px;
+	text-align:center;
+	font-size:11px;
 }
 th{
-color:#E85A4F;
-
+	color:#E85A4F;
 }
 .table-responsive {
-    display:block;
+	display:block;
 	min-width: rem-calc(1500);
 }
 .sub{
-width:auto;
-background:white;
-margin:10px;
-box-shadow:3px 3px 3px #aaa;
-border:2px solid #AAA;
-padding-top:15px;
+	width:auto;
+	background:white;
+	margin:10px;
+	box-shadow:3px 3px 3px #aaa;
+	border:2px solid #AAA;
+	padding-top:15px;
 }
 .horizontal-scroll {
-  overflow: hidden;
-  overflow-x: auto;
-  clear: both;
-  width: 100%;
+	overflow: hidden;
+	overflow-x: auto;
+	clear: both;
+	width: 100%;
 }
 
-	.hidden{display:none;}
-	.new-alert {
-		background-color: #143642;
-	}
-	.overlay1 {
-		display: none;
-		position: fixed;
-		width: 100vw;
-		height: 100vh;
-		background: rgba(0, 0, 0, 0.7);
-		z-index: 998;
-		opacity: 0;
-		transition: all 0.5s ease-in-out;
-	}
-	.overlay1.active {
-		display: block;
-		opacity: 1;
-	}
+.hidden{display:none;}
+.new-alert {
+	background-color: #143642;
+}
+.overlay1 {
+	display: none;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 998;
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+.overlay1.active {
+	display: block;
+	opacity: 1;
+}
 	
 </style>
 </head>
@@ -106,8 +99,6 @@ padding-top:15px;
 		</button>
 	</div>
 </nav>
-<br>
-<br>
 <div class="container out"  >
 <div class="row">
 	<div class="col-md-4 col-md-offset-4 well">
@@ -139,9 +130,9 @@ padding-top:15px;
 				<th>End Time</th>
 				</thead>
 				<tbody>
-				 <?php
-				 $n=1;
-				 $user_id=$_SESSION['user_id'];
+				<?php
+				$n=1;
+				$user_id=$_SESSION['user_id'];
 				$user_name=$_SESSION['user_name'];
 				$get_attendance="select * from attendance where user_id='$user_id' order by date DESC";
 				$run_attendance= mysqli_query($conn, $get_attendance);
@@ -149,32 +140,26 @@ padding-top:15px;
 				while($row_attendance=mysqli_fetch_array($run_attendance))
 				{
 					
-					$date = $row_attendance['date'];
-					$start_time = $row_attendance['start_time'];
-					$end_time= $row_attendance['end_time'];
-					$day = $row_attendance['day'];
+					$date1 = $row_attendance['date'];
+					$start_time1 = $row_attendance['start_time'];
+					$end_time1 = $row_attendance['end_time'];
+					$day1 = $row_attendance['day'];
 					
-					$date = date("d-M-Y", strtotime($date));
+					$date1 = date("d-M-Y", strtotime($date1));
 					
 				    echo "<tr>
 				    <td>$n</td>
-				    <td>$date</td>
-					<td>$day</td>
-				    <td>$start_time</td>
-				    <td>$end_time</td>
-				    </tr>
-					
-					";
+				    <td>$date1</td>
+					<td>$day1</td>
+				    <td>$start_time1</td>
+				    <td>$end_time1</td>
+				    </tr>";
 				  $n++; 
 				}
 				
 				?>
-				
-				
 			</tbody>
-				</table>
-
-
+			</table>
 		</div>
 	</div>
 </div>
@@ -261,6 +246,7 @@ document.querySelector('#start_day').addEventListener('click', function() {
 		var start_time = "<?php echo $currentTimeinSeconds; ?>";
 		var day = "<?php echo $day; ?>";
 		var type= "start";
+		
 		$.ajax({
 			url: 'mark_attendance.php',
 			type: 'POST',

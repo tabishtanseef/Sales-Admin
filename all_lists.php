@@ -63,17 +63,17 @@ header ("location:login.php");
 	<div class="container-fluid">
 		<button style="background:#30A2B8; font-size:15px;" type="button" id="sidebarCollapse" class="btn btn-info">
 			<i class="fas fa-align-left"></i>
-			<span >Good Luck Sales</span>
-		</button>		
+			<span>Good Luck Sales</span>
+		</button>
 	</div>
 </nav>
 <div class="container">
   <h2>List of all</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">School</a></li>
-    <li><a data-toggle="tab" href="#menu1">Contact Person</a></li>
-    <li><a data-toggle="tab" href="#menu2">Bookseller</a></li>
-  </ul>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#home">School</a></li>
+		<li><a data-toggle="tab" href="#menu1">Contact Person</a></li>
+		<li><a data-toggle="tab" href="#menu2">Bookseller</a></li>
+	</ul>
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
@@ -238,7 +238,6 @@ header ("location:login.php");
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#sidebar").mCustomScrollbar({

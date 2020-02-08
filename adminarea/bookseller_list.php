@@ -5,38 +5,96 @@ include_once("include/db_connect.php");
 if (!isset($_SESSION['admin_id'])) {
 header ("location:login.php");
 }
+$error = false;
 
-if(isset($_GET['state']) && isset($_GET['search']))
-	{
-		$state =$_GET['state'];
-		$search =$_GET['search'];
-	}
-
+if(isset($_GET['salesman']) && isset($_GET['state']) && isset($_GET['city']))
+{
+	$state =$_GET['state'];
+	$city =$_GET['city'];
+	$salesman =$_GET['salesman'];
+}
+else if(isset($_GET['salesman']) && isset($_GET['state']))
+{
+	$state =$_GET['state'];
+	$salesman =$_GET['salesman'];
+}
+else if(isset($_GET['salesman_id']) && isset($_GET['salesman']))
+{
+	$salesman_id =$_GET['salesman_id'];
+	$salesman =$_GET['salesman'];
+}
+else if(isset($_GET['salesman_id']))
+{
+	$salesman_id =$_GET['salesman_id'];
+}
+else if(isset($_GET['state']) && isset($_GET['city']))
+{
+	$city =$_GET['city'];
+	$state =$_GET['state'];
+}
 else if(isset($_GET['state']))
-	{
-		$state =$_GET['state'];
-	}
-else if(isset($_GET['search']))
-	{
-		$search =$_GET['search'];
-		$state_error = "";
-	}
+{
+	$state =$_GET['state'];
+}
+
 if (isset($_POST['go'])) {
-	
-	$search = mysqli_real_escape_string($conn, $_POST['search']);
-	
-	
-	if(!isset($_POST['school_state'])){
+	if(!isset($_POST['state'])){
+	$error = true;
+	$state_error = "Please select a state";
+	}
+	else{
+		$state = mysqli_real_escape_string($conn, $_POST['state']);	
+	}
+	if(!isset($_POST['city'])){
 	$error = true;
 	}
 	else{
-		$state = mysqli_real_escape_string($conn, $_POST['school_state']);
+		$city = mysqli_real_escape_string($conn, $_POST['city']);
 	}
-	
-	
+	if(!isset($_POST['salesman'])){
+	$error = true;
+	}
+	else{
+			$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
+	}
 	if(!$error){
-		header ("location:all_salesman.php?state=$state&search=$search");
+		header ("location:bookseller_list.php?salesman=$salesman&state=$state&city=$city");
+		
 	}
+	
+}
+function bookseller($run_attendance) {
+	$n=1;
+while($row_attendance=mysqli_fetch_array($run_attendance))
+	{
+		
+		$salesman = $row_attendance['user_name'];
+		$name = $row_attendance['name'];
+		$num = $row_attendance['num'];
+		$email = $row_attendance['email'];
+		$address = $row_attendance['address'];
+		$city = $row_attendance['city'];
+		$state = $row_attendance['state'];
+		
+		
+		
+		echo "<tr title='$salesman'>
+		<td>$n</td>
+		<td class='link'>$salesman</td>
+		<td class='link'>$name</td>
+		<td>$num</td>
+		<td>$email</td>
+		<td>$address</td>
+		<td>$city</td>
+		<td>$state</td>
+		
+		
+		</tr>
+		
+		";
+	  $n++; 
+	}	
+	
 	
 }
 ?>
@@ -48,11 +106,12 @@ if (isset($_POST['go'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Salesman List - Good Luck Sales - Digigoodluck.com</title>
+    <title>BookSeller List - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
     
-<link rel="shortcut icon" href="img/favicon.png">
+		<link rel="shortcut icon" href="img/favicon.png">
+
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -69,7 +128,7 @@ if (isset($_POST['go'])) {
 	font-size:14px;
 	}
 	h4, th{
-	color:#E85A4F;
+	color:#35B394;
 
 	}
 	.table-responsive {
@@ -93,7 +152,9 @@ if (isset($_POST['go'])) {
 	.link{
 		font-weight:bold;
 		color:#E85A4F;
+		
 	}
+
 	</style>
 </head>
 
@@ -102,14 +163,11 @@ if (isset($_POST['go'])) {
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <?php include('sidebar.php');?>
-
         <!-- Page Content Holder -->
         <div id="content">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+					<button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -122,7 +180,7 @@ if (isset($_POST['go'])) {
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
                                <div class="form-group">
-									<select name="school_state" id="statedd" class="form-control" />
+									<select name="state" id="statedd" class="form-control" />
 									 <option selected disabled >Select State</option>
 									<?php
 									  $res=mysqli_query($conn,"select * from states order by state_name");
@@ -140,12 +198,22 @@ if (isset($_POST['go'])) {
 								
                             </li>
 							&nbsp;&nbsp;
-							<li class="nav-item">
-								<div class="form-group">
-									<input type="text" name="search" placeholder="Search Salesman" class="form-control" />
-					             </div>
-					        </li>
+							<li class="nav-item active">
+                               <div class="form-group">
+									<select name="city" id="city" class="form-control" />
+									<option selected disabled>Select City</option>
+									</select>
+								</div>
+                            </li>
 							&nbsp;&nbsp;
+							<li class="nav-item active">
+                               <div class="form-group">
+									<select name="salesman" id="person" class="form-control" />
+									<option selected disabled>Select Salesman</option>
+									</select>
+									<span class="text-danger"><?php if (isset($salesman_error)) echo $salesman_error; ?></span>
+								</div>
+                            </li>
 							<li class="nav-item">
 								<div class="form-group">
 									&nbsp;&nbsp;<input type="submit" name="go" value="Go!" class="btn" style="background:#fab017; font-weight:bold;" />
@@ -162,142 +230,90 @@ if (isset($_POST['go'])) {
                 </div>
             </nav>
 			<?php
-			if(isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Salesman working in $state</h4>";
+			if(isset($salesman) && isset($city) && isset($state)){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Book Seller List of $salesman in $state - $city</h4>";
+			}
+			else if(isset($salesman) && isset($state)){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Book Seller List of $salesman in $state</h4>";
+			}
+			else if(isset($city) && isset($state)){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Book Seller List of $state - $city</h4>";
+			}
+			else if(isset($state)){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Book Seller List of $state</h4>";
+			}
+			else if(isset($salesman)){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Book Seller List of $salesman</h4>";
 			}
 			?>
 			
 			<div class="row sub" style="margin-top:2%;">
-				<div class="col-sm-12 horizontal-scroll">
-					<table id="salesman_report" class="table table-hover table-responsive w-100 d-block d-md-table" style="width:100%;">
+				<div class="col-md-12 horizontal-scroll">
+					<table id="bookseller_list" class="table table-hover table-bordered table-striped table-responsive w-100 d-block d-md-table" style="width:100%;">
 						<thead>
 						<th>Sr. No.</th>
-						<th>Salesman Name</th>
-						<th>Email</th>
+						<th>Salesman</th>
+						<th>Bookseller Name</th>
 						<th>Contact No.</th>
+						<th>Email</th>
+						<th>Address</th>
+						<th>City</th>
 						<th>State</th>
+						
 						</thead>
 						<tbody>
 						<?php
-						$n=1;
 						
-						if(isset($state) && isset($search)){
-							$get_attendance="select * from users where school_state = '$state' AND user like '%$search%' order by user";
-							$run_attendance= mysqli_query($conn, $get_attendance);
-				
-							while($row_attendance=mysqli_fetch_array($run_attendance))
-							{
-								$id = $row_attendance['uid'];
-								$s_name = $row_attendance['user'];
-								$s_num = $row_attendance['num'];
-								$s_email = $row_attendance['email'];
-								$s_state = $row_attendance['school_state'];
-								
-								echo "<tr>
-								<td>$n</td>
-								<td class='link'><a target='_blank' href='salesman_profile.php?id=$id' >$s_name</a></td>
-								<td>$s_email</td>
-								<td>$s_num</td>
-								<td>$s_state</td>
-								</tr>";
-							  $n++; 
-							}
-						}
-						else if(isset($state)){
-							$get_attendance="select * from users where school_state = '$state' order by user";
-							$run_attendance= mysqli_query($conn, $get_attendance);
-				
-							while($row_attendance=mysqli_fetch_array($run_attendance))
-							{
-								
-								$id = $row_attendance['uid'];
-								$s_name = $row_attendance['user'];
-								$s_num = $row_attendance['num'];
-								$s_email = $row_attendance['email'];
-								$s_state = $row_attendance['school_state'];
-								
-								
-								
-								echo "<tr>
-								<td>$n</td>
-								<td class='link'><a href='salesman_profile.php?id=$id'>$s_name</a></td>
-								<td>$s_email</td>
-								<td>$s_num</td>
-								<td>$s_state</td>
-								</tr>
-								
-								";
-							  $n++; 
-							}
-						}
-						else if (isset($search)){
-							$get_attendance="select * from users where user like '%$search%' order by user";
-							$run_attendance= mysqli_query($conn, $get_attendance);
-				
-							while($row_attendance=mysqli_fetch_array($run_attendance))
-							{
-								
-								$id = $row_attendance['uid'];
-								$s_name = $row_attendance['user'];
-								$s_num = $row_attendance['num'];
-								$s_email = $row_attendance['email'];
-								$s_state = $row_attendance['school_state'];
-								
-								
-								
-								echo "<tr>
-								<td>$n</td>
-								<td class='link'><a href='salesman_profile.php?id=$id'>$s_name</a></td>
-								<td>$s_email</td>
-								<td>$s_num</td>
-								<td>$s_state</td>
-								</tr>
-								
-								";
-							  $n++; 
-							}	
-						}
-						else{
-						$get_attendance="select * from users order by user ";
+						
+						if(isset($salesman) && isset($state) && isset($city)){
+							
+						$get_attendance="select * from bookseller where user_name ='$salesman' AND state = '$state' and city='$city' order by name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
-						while($row_attendance=mysqli_fetch_array($run_attendance))
-						{
-							
-							$id = $row_attendance['uid'];
-							$s_name = $row_attendance['user'];
-							$s_num = $row_attendance['num'];
-							$s_email = $row_attendance['email'];
-							$s_state = $row_attendance['school_state'];
-							
-							
-							
-							echo "<tr>
-							<td>$n</td>
-							<td class='link'><a href='salesman_profile.php?id=$id'>$s_name</a></td>
-							<td>$s_email</td>
-							<td>$s_num</td>
-							<td>$s_state</td>
-							</tr>
-							
-							";
-						  $n++; 
+						bookseller($run_attendance);
 						}
+						else if(isset($salesman) && isset($state)){
+							
+						$get_attendance="select * from bookseller where user_name ='$salesman' AND state = '$state' order by name";
+						$run_attendance= mysqli_query($conn, $get_attendance);
+						 
+						bookseller($run_attendance);
+						}
+						
+						else if(isset($state) && isset($city)){
+							
+						$get_attendance="select * from bookseller where state = '$state' AND city='$city' order by name";
+						$run_attendance= mysqli_query($conn, $get_attendance);
+						 
+						bookseller($run_attendance);
+						}
+						else if(isset($salesman_id)){
+							
+						$get_attendance="select * from bookseller where user_id = '$salesman_id' order by name";
+						$run_attendance= mysqli_query($conn, $get_attendance);
+						 
+						bookseller($run_attendance);
+						}
+						else if(isset($state)){
+							
+						$get_attendance="select * from bookseller where state = '$state' order by name";
+						$run_attendance= mysqli_query($conn, $get_attendance);
+						 
+						bookseller($run_attendance);
+						}
+						else{
+						$get_attendance="select * from bookseller order by name";
+						$run_attendance= mysqli_query($conn, $get_attendance); 
+						bookseller($run_attendance);	
 						}
 						?>
 						</tbody>
 					</table>
-
-
 				</div>
 			</div>
-			
-			
-			
-        </div>
+		</div>
     </div>
 	<iframe id="txtArea1" style="display:none"></iframe>
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -316,8 +332,34 @@ if (isset($_POST['go'])) {
 				var state =  $(this).val();
 
 				$.ajax({
+					url: 'get_attendance.php',
+					type: 'GET',
+					data: {'shahrukh':state},
+					dataType: 'json',
+					success:function(response){
+
+						var len = response.length;
+
+						$("#person").empty();
+						$("#person").append("<option disabled selected value=''>Select Salesman</option>");
+						for( var i = 0; i<len; i++){
+							var id = response[i]['id'];
+							var name = response[i]['name'];
+
+							$("#person").append("<option value='"+name+"'>"+name+"</option>");
+
+						}
+					}
+				});
+			});
+			
+			$("#statedd").change(function(){
+				
+				var state =  $(this).val();
+
+				$.ajax({
 					url: 'get_cities.php',
-					type: 'POST',
+					type: 'GET',
 					data: {'shahrukh':state},
 					dataType: 'json',
 					success:function(response){
@@ -336,16 +378,36 @@ if (isset($_POST['go'])) {
 				});
 			});
 			
-			
-			
-			
+			$("#city").change(function(){
+				var state = $('#statedd').val();
+				var city =  $(this).val();
+
+				$.ajax({
+					url: 'get_specific_users.php',
+					type: 'GET',
+					data: {'shahrukh':state,'city':city},
+					dataType: 'json',
+					success:function(response){
+
+						var len = response.length;
+						$("#person").empty();
+						$("#person").append("<option disabled selected value=''>Select Salesman</option>");
+						for( var i = 0; i<len; i++){
+							var name = response[i]['name'];
+
+							$("#person").append("<option value='"+name+"'>"+name+"</option>");
+
+						}
+					}
+				});
+			});			
         });
 		
 		function fnExcelReport()
 		{
 			var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
 			var textRange; var j=0;
-			tab = document.getElementById('salesman_report'); // id of table
+			tab = document.getElementById('bookseller_list'); // id of table
 
 			for(j = 0 ; j < tab.rows.length ; j++) 
 			{     
@@ -376,8 +438,8 @@ if (isset($_POST['go'])) {
 		}
 		
 		
-		
-		/*function exportTableToExcel(tableID, filename = ''){
+		/*
+		function exportTableToExcel(tableID, filename = ''){
 				var downloadLink;
 				var dataType = 'application/vnd.ms-excel';
 				var tableSelect = document.getElementById(tableID);
@@ -406,8 +468,7 @@ if (isset($_POST['go'])) {
 					//triggering the function
 					downloadLink.click();
 				}
-			}*/
-		
+		}*/
     </script>
 </body>
 
