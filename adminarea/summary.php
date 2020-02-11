@@ -637,10 +637,7 @@ function goFailure(){
 							<td>$s_visit2</td>
 							<td>$s_visit3</td>
 							<td>$s_visit3p</td>
-							
-							</tr>
-							
-							";
+							</tr>";
 							
 							$total_jan = $total_jan + $jan1 + $jan2 + $jan3;
 							$total_feb = $total_feb + $feb1 + $feb2 + $feb3;
@@ -654,14 +651,11 @@ function goFailure(){
 							$total_oct = $total_oct + $oct1 + $oct2 + $oct3;
 							$total_nov = $total_nov + $nov1 + $nov2 + $nov3;
 							$total_dec = $total_dec + $dec1 + $dec2 + $dec3;
-							
 							$final_0_visit = $final_0_visit + $c_visit0 + $i_visit0 + $s_visit0;
 							$final_1_visit = $final_1_visit + $c_visit1 + $i_visit1 + $s_visit1;
 							$final_2_visit = $final_2_visit + $c_visit2 + $i_visit2 + $s_visit2;
 							$final_3_visit = $final_3_visit + $c_visit3 + $i_visit3 + $s_visit3;
-							$final_3p_visit = $final_3p_visit + $c_visit3p + $i_visit3p + $s_visit3p;
-							
-							
+							$final_3p_visit = $final_3p_visit + $c_visit3p + $i_visit3p + $s_visit3p;							
 							$n++;
 							$i++;
 							
@@ -691,16 +685,10 @@ function goFailure(){
 						<td>$final_2_visit</td>
 						<td>$final_3_visit</td>
 						<td>$final_3p_visit</td>
-					
 						</tr>"
-						
-						
 						?>
 						</tbody>
 					</table>
-					
-
-
 				</div>
 			</div>
 			</div>

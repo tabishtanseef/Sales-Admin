@@ -333,11 +333,11 @@ $("#school").change(function(){
 	var state = "<?php echo $state; ?>";
 	var city = $('#city').val();
 	$("#school_hidden").val(schoolname);
-	
+	console.log(school);
 	$.ajax({
-		url: 'get_bookseller.php',
+		url: 'get_bookseller_details.php',
 		type: 'POST',
-		data: {'state':state,'city':city},
+		data: {'state':state,'city':city,'b_id':school},
 		dataType: 'json',
 		success:function(response){
 			

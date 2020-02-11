@@ -549,7 +549,7 @@ function visit($run_attendance) {
 
 						}
 						else{
-						$get_attendance="select * from visits order by date DESC, id DESC";
+						$get_attendance="select * from visits order by date DESC, id DESC LIMIT 500";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						visit($run_attendance);
@@ -560,8 +560,6 @@ function visit($run_attendance) {
 					</table>
 				</div>
 			</div>
-			
-			
         </div>
     </div>
 	<iframe id="txtArea1" style="display:none"></iframe>

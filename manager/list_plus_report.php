@@ -3,28 +3,12 @@
 session_start();
 
 include_once("include/db_connect.php");
-if (!isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['manager_id'])) {
 header ("location:login.php");
 }
 $error = false;
 
-if(isset($_GET['salesman']) && isset($_GET['state']) && isset($_GET['city']))
-{
-	$state =$_GET['state'];
-	$city =$_GET['city'];
-	$salesman =$_GET['salesman'];
-}
-else if(isset($_GET['salesman']) && isset($_GET['state']))
-{
-	$state =$_GET['state'];
-	$salesman =$_GET['salesman'];
-}
-else if(isset($_GET['salesman_id']) && isset($_GET['salesman']))
-{
-	$salesman_id =$_GET['salesman_id'];
-	$salesman =$_GET['salesman'];
-}
-else if(isset($_GET['salesman_id']))
+if(isset($_GET['salesman_id']))
 {
 	$salesman_id =$_GET['salesman_id'];
 	$get_attendance="select * from users where uid ='$salesman_id'";
@@ -32,41 +16,8 @@ else if(isset($_GET['salesman_id']))
 	$row_attendance=mysqli_fetch_array($run_attendance);
 	$salesman = $row_attendance['user'];
 }
-else if(isset($_GET['state']) && isset($_GET['city']))
-{
-	$city =$_GET['city'];
-	$state =$_GET['state'];
-}
-else if(isset($_GET['state']))
-{
-	$state =$_GET['state'];
-}
-
-if (isset($_POST['go'])) {
-	if(!isset($_POST['school_state'])){
-	$error = true;
-	$state_error = "Please select a state";
-	}
-	else{
-		$state = mysqli_real_escape_string($conn, $_POST['school_state']);	
-	}
-	if(!isset($_POST['city'])){
-	$error = true;
-	}
-	else{
-		$city = mysqli_real_escape_string($conn, $_POST['city']);
-	}
-	if(!isset($_POST['salesman'])){
-	$error = true;
-	}
-	else{
-			$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
-	}
-	if(!$error){
-		header ("location:s_list.php?salesman=$salesman&state=$state&city=$city");
-		
-	}
-	
+else{
+	header ("location:index.php");
 }
 function school($run_attendance,$conn) {
 	$n=1;
@@ -86,39 +37,69 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$school_state = $row_attendance['school_state'];
 		$is_deleted = $row_attendance['is_deleted'];
 		
-		$sql21 = "select * from visits WHERE school_id = '$school_id' and is_deleted='1'" ;
-		$result21 = mysqli_query($conn,$sql21);
-		$j1 = mysqli_num_rows ( $result21 );
+		if($is_deleted==0){
+			
 		
 		
-		if($is_deleted==1){
-		echo "<tr title='$salesman'>
-		<td><a href='permanent_delete.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
-		<td><a href='restore_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/restore2.png' style='width:28px; margin:auto;'></a></td>
-		<td>$n</td>
-		<td class='link'>$school_name</td>
-		<td>$school_id</td>
-		<td>$school_board</td>
-		<td>$school_strength</td>
-		<td>$school_contact</td>
-		<td>$school_email</td>
-		<td>$j1</td>
-		<td>$school_address</td>
-		<td>$school_city</td>
-		<td>$school_state</td>
-		</tr>";
-	  $n++;
+			$sql21 = "select * from visits WHERE school_id = '$school_id' and is_deleted='0' order by date DESC, id DESC" ;
+			$result21 = mysqli_query($conn,$sql21);
+			
+			$j1 = mysqli_num_rows ( $result21 );
+			
+			echo "<tr title='$salesman'>
+			<td>$n</td>
+			<td class='link'>$school_name</td>
+			<td>$school_id</td>
+			<td>$school_board <br>$school_strength</td>
+			<td>$school_address</td>
+			<td>$school_city</td>
+			<td>$j1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			</tr>
+			";
+			
+			while($row=mysqli_fetch_array($result21)){
+			
+				$date = $row['date'];
+				$c_person = $row['contact_person'];
+				$c_person_no = $row['contact_person_no'];
+				$supply = $row['supply_through'];
+				$specimen_given = $row['specimen_given'];
+				$specimen_required = $row['specimen_required'];
+				$school_comment = $row['school_comment'];
+				$your_comment = $row['your_comment'];
+				$is_deleted2 = $row['is_deleted'];
+				$date = date("d-M-Y", strtotime($date));
+				
+				echo "
+				<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				
+				<td>$date</td>
+				<td>$c_person ($c_person_no )</td>
+				<td>$supply</td>
+				<td>$specimen_given</td>
+				<td>$specimen_required</td>
+				<td>$school_comment</td>
+				<td>$your_comment</td>
+				</tr>
+				
+				";
+			
+			}
+			echo "<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				</tr>";	
 		}
+		$n++;
 	}	
 }
 ?>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Drop List - Good Luck Sales - Digigoodluck.com</title>
+    <title>School List - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
     <link rel="shortcut icon" href="img/favicon.png">
@@ -167,62 +148,18 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 <body>
 
     <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <?php include('sidebar.php');?>
-        <!-- Page Content Holder -->
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-					<button type="button" id="sidebarCollapse" class="navbar-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-					<form role="form" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<a class="navbar-brand" href="index.php">
+						<img src="img/sales.png" style="width:60%; padding:10px;" alt="">
+					</a>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                               <div class="form-group">
-									<select name="school_state" id="statedd" class="form-control" />
-									 <option selected disabled >Select State</option>
-									<?php
-									  $res=mysqli_query($conn,"select * from states order by state_name");
-									  while($row=mysqli_fetch_array($res))
-									  {  
-									  ?>
-									  <option value="<?php  echo $row ["state_name"]; ?>" ><?php  echo $row ["state_name"]; ?></option>
-									  <?php
-									  }
-									  ?>
-									
-									</select>
-									<span class="text-danger"><?php if (isset($state_error)) echo $state_error; ?></span>
-								</div>
-								
-                            </li>
-							&nbsp;&nbsp;
-							<li class="nav-item active">
-                               <div class="form-group">
-									<select name="city" id="city" class="form-control" />
-									<option selected disabled>Select City</option>
-									</select>
-								</div>
-                            </li>
-							&nbsp;&nbsp;
-							<li class="nav-item active">
-                               <div class="form-group">
-									<select name="salesman" id="person" class="form-control" />
-									<option selected disabled>Select Salesman</option>
-									</select>
-									<span class="text-danger"><?php if (isset($salesman_error)) echo $salesman_error; ?></span>
-								</div>
-                            </li>
-							<li class="nav-item">
+                            <li class="nav-item">
 								<div class="form-group">
-									&nbsp;&nbsp;<input type="submit" name="go" value="Go!" class="btn" style="background:#fab017; font-weight:bold;" />
+									&nbsp;&nbsp;
+									&nbsp;&nbsp;<a href="logout.php"><button class="btn" style="background:#FAB016; color:white; font-weight:bold;" />Log Out</button></a>
 					             </div>
 					        </li>
 							<li class="nav-item">
@@ -232,24 +169,14 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 					        </li>
                         </ul>
                     </div>
-					</form>
+					<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
                 </div>
             </nav>
 			<?php
-			if(isset($salesman) && isset($city) && isset($state)){
-				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Drop School List of $salesman in $state - $city</h4>";
-			}
-			else if(isset($salesman) && isset($state)){
-				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Drop School List of $salesman in $state</h4>";
-			}
-			else if(isset($city) && isset($state)){
-				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Drop School List of $state - $city</h4>";
-			}
-			else if(isset($state)){
-				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Drop School List of $state</h4>";
-			}
-			else if(isset($salesman) || isset($salesman_id) ){
-				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; Drop School List of $salesman</h4>";
+			if(isset($salesman) || isset($salesman_id) ){
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
 			}
 			?>
 			
@@ -257,34 +184,34 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 				<div class="col-sm-12 horizontal-scroll">
 					<table id="school_list" class="table table-hover table-bordered table-striped table-responsive w-100 d-block d-md-table" style="width:100%;">
 						<thead>
-						<th>Permanent Delete</th>
-						<th>Restore</th>
 						<th>Sr. No.</th>
 						<th>School Name</th>
 						<th>School ID</th>
-						<th>School Board</th>
-						<th>School Strength</th>
-						<th>Contact No.</th>
-						<th>Email</th>
-						<th>No. of Visits</th>
+						<th>School Board & Strength</th>
 						<th>School Address</th>
 						<th>School City</th>
-						<th>School State</th>
+						<th>No. of Visits</th>
+						<th>Date</th>
+						<th>Contact Info</th>
+						<th>Supply Through</th>
+						<th>Specimen Given</th>
+						<th>Specimen Required</th>
+						<th>School Comment</th>
+						<th>Your Comment</th>
 						</thead>
 						<tbody>
-						<?php
 						
-						
+						<?php						
 						if(isset($salesman) && isset($state) && isset($city)){
 							
-						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' and school_city='$city' order by school_name";
+						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' and school_city='$city' and is_deleted='0' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						school($run_attendance,$conn);	
 						}
 						else if(isset($salesman) && isset($state)){
 							
-						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' order by school_name";
+						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' and is_deleted='0' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						school($run_attendance,$conn);	
@@ -292,21 +219,21 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 						
 						else if(isset($state) && isset($city)){
 							
-						$get_attendance="select * from school_list where school_state = '$state' AND school_city='$city' order by school_name";
+						$get_attendance="select * from school_list where school_state = '$state' AND school_city='$city' and is_deleted='0' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						school($run_attendance,$conn);	
 						}
 						else if(isset($salesman_id)){
 							
-						$get_attendance="select * from school_list where user_id = '$salesman_id' order by school_name";
+						$get_attendance="select * from school_list where user_id = '$salesman_id' and is_deleted='0' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						school($run_attendance,$conn);	
 						}
 						else if(isset($state)){
 							
-						$get_attendance="select * from school_list where school_state = '$state' order by school_name";
+						$get_attendance="select * from school_list where school_state = '$state' and is_deleted='0' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
 						school($run_attendance,$conn);	
@@ -448,40 +375,9 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 				sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
 
 			return (sa);
+			
 		}
 		
-		
-		/*
-		function exportTableToExcel(tableID, filename = ''){
-				var downloadLink;
-				var dataType = 'application/vnd.ms-excel';
-				var tableSelect = document.getElementById(tableID);
-				var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-				
-				// Specify file name
-				filename = filename?filename+'.xls':'excel_data.xls';
-				
-				// Create download link element
-				downloadLink = document.createElement("a");
-				
-				document.body.appendChild(downloadLink);
-				
-				if(navigator.msSaveOrOpenBlob){
-					var blob = new Blob(['\ufeff', tableHTML], {
-						type: dataType
-					});
-					navigator.msSaveOrOpenBlob( blob, filename);
-				}else{
-					// Create a link to the file
-					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-				
-					// Setting the file name
-					downloadLink.download = filename;
-					
-					//triggering the function
-					downloadLink.click();
-				}
-		}*/
     </script>
 </body>
 

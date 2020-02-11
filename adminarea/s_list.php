@@ -242,16 +242,16 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state - $city</h4>";
 			}
 			else if(isset($salesman) && isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state</h4>";
 			}
 			else if(isset($city) && isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state - $city</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state - $city</h4>";
 			}
 			else if(isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state</h4>";
 			}
 			else if(isset($salesman) || isset($salesman_id) ){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
 			}
 			?>
 			

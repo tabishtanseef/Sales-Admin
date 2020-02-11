@@ -91,7 +91,7 @@ padding-top:15px;
 				<th>Contact No.</th>
 				<th>Email</th>
 				<th>Address</th>
-				<th>School City</th>
+				<th>City</th>
 				</thead>
 				<tbody>
 				 <?php
