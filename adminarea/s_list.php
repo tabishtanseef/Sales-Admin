@@ -90,9 +90,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$result21 = mysqli_query($conn,$sql21);
 		$j1 = mysqli_num_rows ( $result21 );
 		
-		
-		
-		
 		if($is_deleted==0){
 		echo "<tr title='$salesman'>
 		<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>

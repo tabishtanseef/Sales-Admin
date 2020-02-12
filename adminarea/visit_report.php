@@ -163,10 +163,12 @@ function visit($run_attendance) {
 	{
 		
 		$v_id = $row_attendance['id'];
+		$salesman_id = $row_attendance['user_id'];
 		$salesman = $row_attendance['user_name'];
 		$date = $row_attendance['date'];
 		$time = $row_attendance['time'];
 		$day = $row_attendance['day'];
+		$school_id = $row_attendance['school_id'];
 		$s_name = $row_attendance['school_name'];
 		$s_city = $row_attendance['school_city'];
 		$board = $row_attendance['board'];
@@ -183,7 +185,7 @@ function visit($run_attendance) {
 		
 		if($is_deleted==0){
 		echo "<tr title='$salesman'>
-		<td><a href='delete.php?del_id=$v_id'><img src='img/del.png' style='width:25px; margin:auto;'></a></td>
+		<td><a href='delete.php?del_id=$v_id&s_id=$school_id&salesman_id=$salesman_id'><img src='img/del.png' style='width:25px; margin:auto;'></a></td>
 		<td>$n</td>
 		<td>$date</td>
 		<td>$time</td>

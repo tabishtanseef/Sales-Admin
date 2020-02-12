@@ -127,7 +127,7 @@ if (isset($_POST['go'])) {
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="s_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
@@ -143,6 +143,11 @@ if (isset($_POST['go'])) {
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
 								<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="list_plus_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Multiple Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">

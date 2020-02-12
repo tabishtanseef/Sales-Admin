@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 session_start();
+
 include_once("include/db_connect.php");
 if (!isset($_SESSION['admin_id'])) {
 header ("location:login.php");
@@ -43,49 +44,52 @@ else if(isset($_GET['state']))
 
 if (isset($_POST['go'])) {
 	if(!isset($_POST['school_state'])){
-		$error = true;
-		$state_error = "Please select a state";
+	$error = true;
+	$state_error = "Please select a state";
 	}
 	else{
 		$state = mysqli_real_escape_string($conn, $_POST['school_state']);	
 	}
 	if(!isset($_POST['city'])){
-		$error = true;
+	$error = true;
 	}
 	else{
 		$city = mysqli_real_escape_string($conn, $_POST['city']);
 	}
 	if(!isset($_POST['salesman'])){
-		$error = true;
+	$error = true;
 	}
 	else{
 		$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
 	}
 	if(!$error){
-		header ("location:school_list.php?salesman=$salesman&state=$state&city=$city");	
+		header ("location:s_list_with_p.php?salesman=$salesman&state=$state&city=$city");
+		
 	}
-	
 }
-function school($run_attendance) {
+
+function school($run_attendance,$conn) {
 	$n=1;
 while($row_attendance=mysqli_fetch_array($run_attendance))
 	{
+		$school_id = $row_attendance['id'];
 		$salesman_id = $row_attendance['user_id'];
 		$salesman = $row_attendance['user_name'];
-		$school_id = $row_attendance['id'];
 		$school_name = $row_attendance['school_name'];
 		$school_code = $row_attendance['school_code'];
 		$school_board = $row_attendance['school_board'];
 		$school_strength = $row_attendance['school_strength'];
 		$school_contact = $row_attendance['school_contact'];
 		$school_email = $row_attendance['school_email'];
-		$total_visits = $row_attendance['total_visits'];
 		$school_address = $row_attendance['school_address'];
 		$school_city = $row_attendance['school_city'];
 		$school_state = $row_attendance['school_state'];
 		$is_deleted = $row_attendance['is_deleted'];
 		
-		//<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
+		$sql21 = "select * from visits WHERE school_id = '$school_id' and is_deleted='0'" ;
+		$result21 = mysqli_query($conn,$sql21);
+		$j1 = mysqli_num_rows ( $result21 );
+		
 		if($is_deleted==0){
 		echo "<tr title='$salesman'>
 		<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
@@ -97,7 +101,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		<td>$school_strength</td>
 		<td>$school_contact</td>
 		<td>$school_email</td>
-		<td>$total_visits</td>
+		<td>$j1</td>
 		<td>$school_address</td>
 		<td>$school_city</td>
 		<td>$school_state</td>
@@ -108,7 +112,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 }
 ?>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -235,16 +238,16 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state - $city</h4>";
 			}
 			else if(isset($salesman) && isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman in $state</h4>";
 			}
 			else if(isset($city) && isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state - $city</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state - $city</h4>";
 			}
 			else if(isset($state)){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $state</h4>";
 			}
 			else if(isset($salesman) || isset($salesman_id) ){
-			echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
+				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; School List of $salesman</h4>";
 			}
 			?>
 			
@@ -260,30 +263,26 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 						<th>School Board</th>
 						<th>School Strength</th>
 						<th>Contact No.</th>
-						<th>School Email</th>
+						<th>Email</th>
 						<th>No. of Visits</th>
 						<th>School Address</th>
 						<th>School City</th>
 						<th>School State</th>
-						
 						</thead>
 						<tbody>
 						<?php
-						
-						
 						if(isset($salesman) && isset($state) && isset($city)){
 							
 						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' and school_city='$city' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
-						 
-						school($run_attendance);
+						school($run_attendance,$conn);
 						}
 						else if(isset($salesman) && isset($state)){
 							
-						$get_attendance="select * from school_list where user_name ='$salesman' AND school_state = '$state' order by school_name";
+						$get_attendance="CALL list_demo('$state','$salesman')";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
-						school($run_attendance);
+						school($run_attendance,$conn);	 
 						}
 						
 						else if(isset($state) && isset($city)){
@@ -291,27 +290,25 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 						$get_attendance="select * from school_list where school_state = '$state' AND school_city='$city' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
-						school($run_attendance);
+						school($run_attendance,$conn);	
 						}
+						
 						else if(isset($salesman_id)){
 							
 						$get_attendance="select * from school_list where user_id = '$salesman_id' order by school_name";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
-						school($run_attendance);
+						school($run_attendance,$conn);	
 						}
 						else if(isset($state)){
 							
-						$get_attendance="select * from school_list where school_state = '$state' order by school_name";
+						$get_attendance="CALL list_demo($state)";
 						$run_attendance= mysqli_query($conn, $get_attendance);
 						 
-						school($run_attendance);
+						school($run_attendance,$conn);	
 						}
 						else{
-						$get_attendance="select * from school_list order by school_name";
-						$run_attendance= mysqli_query($conn, $get_attendance);
-						 
-						school($run_attendance);	
+						
 						}
 						?>
 						</tbody>
@@ -448,39 +445,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 
 			return (sa);
 		}
-		
-		
-		/*
-		function exportTableToExcel(tableID, filename = ''){
-				var downloadLink;
-				var dataType = 'application/vnd.ms-excel';
-				var tableSelect = document.getElementById(tableID);
-				var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-				
-				// Specify file name
-				filename = filename?filename+'.xls':'excel_data.xls';
-				
-				// Create download link element
-				downloadLink = document.createElement("a");
-				
-				document.body.appendChild(downloadLink);
-				
-				if(navigator.msSaveOrOpenBlob){
-					var blob = new Blob(['\ufeff', tableHTML], {
-						type: dataType
-					});
-					navigator.msSaveOrOpenBlob( blob, filename);
-				}else{
-					// Create a link to the file
-					downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-				
-					// Setting the file name
-					downloadLink.download = filename;
-					
-					//triggering the function
-					downloadLink.click();
-				}
-		}*/
     </script>
 </body>
 

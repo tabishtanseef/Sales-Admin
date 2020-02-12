@@ -25,8 +25,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$city = $row_attendance['city'];
 		$state = $row_attendance['state'];
 		
-		
-		
 		echo "<tr title='$salesman'>
 		<td>$n</td>
 		<td class='link'>$salesman</td>

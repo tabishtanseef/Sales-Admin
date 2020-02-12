@@ -71,7 +71,10 @@ if (isset($_POST['add_visit'])) {
 		else{
 			if(mysqli_query($conn, "INSERT INTO visits(user_id, user_name, date, time, day, school_comment, supply_through, your_comment, specimen_given, specimen_required, school_state, school_city, school_id, school_name, board, strength, address, contact_person, contact_person_no) VALUES
 			('". $u_id ."','" . $u_name . "','" . $date . "', '". $currentTimeinSeconds ."', '". $day ."', '" . $response . "', '" . $supply . "', '" . $remarks . "', '" . $specimen_given . "','" . $specimen_required . "', '". $state . "','". $school_city ."','". $school_id ."','". $school_name ."','". $board ."','". $strength ."','". $address ."','". $contact_person ."','". $num ."')")) {
+				
+				if(mysqli_query($conn, "UPDATE school_list SET total_visits = total_visits + 1 WHERE id = '".$school_id."' ")){
 				$success_message = "Visit Successfully Added!";
+				}
 			}
 			else {
 				$error_message = "Error in Adding...Please try again later!";
