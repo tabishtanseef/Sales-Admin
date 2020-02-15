@@ -100,7 +100,7 @@ header ("location:login.php");
 				$n=1;
 				$user_id=$_SESSION['user_id'];
 				$user_name=$_SESSION['user_name'];
-				$get_attendance="select * from visits where user_id='$user_id' order by date DESC, id DESC";
+				$get_attendance="select * from visits where user_id='$user_id' and is_deleted='0' order by date DESC, id DESC";
 				$run_attendance= mysqli_query($conn, $get_attendance);
 				 
 				while($row_attendance=mysqli_fetch_array($run_attendance))

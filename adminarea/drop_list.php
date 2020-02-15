@@ -81,20 +81,18 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$school_strength = $row_attendance['school_strength'];
 		$school_contact = $row_attendance['school_contact'];
 		$school_email = $row_attendance['school_email'];
+		$total_visits = $row_attendance['total_visits'];
 		$school_address = $row_attendance['school_address'];
 		$school_city = $row_attendance['school_city'];
 		$school_state = $row_attendance['school_state'];
 		$is_deleted = $row_attendance['is_deleted'];
 		
-		$sql21 = "select * from visits WHERE school_id = '$school_id' and is_deleted='1'" ;
-		$result21 = mysqli_query($conn,$sql21);
-		$j1 = mysqli_num_rows ( $result21 );
 		
-		
+		//<td><a href='restore_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/restore2.png' style='width:28px; margin:auto;'></a></td>
 		if($is_deleted==1){
-		echo "<tr title='$salesman'>
+		echo "<tr title='$salesman' id='$school_id'>
 		<td><a href='permanent_delete.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
-		<td><a href='restore_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/restore2.png' style='width:28px; margin:auto;'></a></td>
+		<td><img src='img/restore2.png' onclick='restore_school($school_id)' style='width:28px; margin:auto;'></td>
 		<td>$n</td>
 		<td class='link'>$school_name</td>
 		<td>$school_id</td>
@@ -102,7 +100,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		<td>$school_strength</td>
 		<td>$school_contact</td>
 		<td>$school_email</td>
-		<td>$j1</td>
+		<td>$total_visits</td>
 		<td>$school_address</td>
 		<td>$school_city</td>
 		<td>$school_state</td>
@@ -160,6 +158,9 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		font-weight:bold;
 		color:#E85A4F;
 		text-align:left;
+	}
+	.hidden{
+		display:none;
 	}
 	</style>
 </head>
@@ -415,6 +416,27 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 			
         });
 		
+		function restore_school(school_id){
+			$("#"+school_id).addClass('hidden');
+			$.ajax({
+			url: 'restore_school2.php',
+			type: 'GET',
+			data: {'del_id':school_id},
+			dataType: 'json',
+			success:function(response){
+				console.log(response[0]['message']);
+				$('.overlay1').addClass('active');
+				new Attention.Alert({
+					title: 'Start Day',
+					content: response[0]['message'],
+					afterClose: () => {
+                        $('.overlay1').removeClass('active');
+                    }
+				});
+			}
+			
+		});
+		}
 		
 		function fnExcelReport()
 		{

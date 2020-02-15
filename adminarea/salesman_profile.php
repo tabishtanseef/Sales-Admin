@@ -57,8 +57,9 @@ if (isset($_POST['go'])) {
 
 	th, td{
 		font-weight:bold;
-	text-align:right;
-	color:#32B394;
+		font-size:14px;
+		text-align:right;
+		color:#32B394;
 	}
 	h2{
 		color:#32B394;
@@ -118,56 +119,56 @@ if (isset($_POST['go'])) {
 			<div class="container" style="min-height:500px;">
 			<div class="container out">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="row">
 						<div class="col-md-10" style="margin:auto; margin-top:30px;">
 							<div class="form-group">
-								<center><a target="_blank" href="manual.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Manual Reporting" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="manual.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Manual Reporting" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="bookseller_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller List" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="bookseller_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="attendance_report.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>"><input type="submit" name="" value="Attendance Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="attendance_report.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>"><input type="submit" name="" value="Attendance Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="list_plus_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Multiple Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="list_plus_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Multiple Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="b_visits_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller Visit Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="b_visits_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="summary.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Summary Report" class="btn" style="width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="summary2.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Summary Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="drop_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Drop List" class="btn" style="width:90%; background:red; color:white; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="drop_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Drop List" class="btn" style="font-size:14px; width:90%; background:red; color:white; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-12 col-md-offset-12 well">
 							<fieldset>
@@ -178,23 +179,23 @@ if (isset($_POST['go'])) {
 											<tbody>
 											<tr>
 											<td style="padding-top:20px;" >Salesman Id</td>
-											<td><input type="text" id="userid" name="" readonly value="<?php echo $id; ?>"  class="form-control" /></td>
+											<td><input type="text" style="font-size:14px;" id="userid" name="" readonly value="<?php echo $id; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" >Salesman Name</td>
-											<td><input type="text" name="" readonly value="<?php echo $s_name; ?>"  class="form-control" /></td>
+											<td><input type="text" style="font-size:14px;" readonly value="<?php echo $s_name; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Salesman Email</td>
-											<td><input type="text" name="" readonly value="<?php echo $s_email; ?>"  class="form-control" /></td>
+											<td><input type="text" style="font-size:14px;" readonly value="<?php echo $s_email; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Contact No.</td>
-											<td><input type="text" name="" readonly value="<?php echo $s_num; ?>"  class="form-control" /></td>
+											<td><input type="text" style="font-size:14px;" readonly value="<?php echo $s_num; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Working State</td>
-											<td><input type="text" name="" readonly value="<?php echo $s_state; ?>"  class="form-control" /></td>
+											<td><input type="text" style="font-size:14px;" readonly value="<?php echo $s_state; ?>"  class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" rowspan="" >Working Cities</td>
@@ -212,6 +213,55 @@ if (isset($_POST['go'])) {
 							</fieldset>						
 						</div>
 					</div>	
+				</div>
+				<div class="col-md-3">
+					<div class="row">
+						<div class="col-md-10" style="margin:auto; margin-top:30px;">
+							<div class="form-group">
+								<center><a target="_blank" href="add_qb_stock.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Add QB Stock" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="bookseller_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="attendance_report.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>"><input type="submit" name="" value="Attendance Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="visit_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="list_plus_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Multiple Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="b_visits_report.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Book Seller Visit Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="summary2.php?salesman_id=<?php echo $id;?>&salesman=<?php echo $s_name;?>&state=<?php echo $s_state;?>"><input type="submit" name="" value="Summary Report" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+						<div class="col-md-10" style="margin:auto; margin-top:15px;">
+							<div class="form-group">
+								<center><a target="_blank" href="drop_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="Drop List" class="btn" style="font-size:14px; width:90%; background:red; color:white; font-weight:bold;" /></a></center>
+							</div>
+						</div>
+					</div>
 				</div>	
 			</div>	
 				
@@ -254,7 +304,7 @@ if (isset($_POST['go'])) {
 						
 						for( var i = 0; i<len; i++){
 							var name = response[i]['name'];
-							$('#person').append("<input type='text' readonly id=city"+i+" class='form-control' /><br>"); 
+							$('#person').append("<input type='text' style='font-size:14px;' readonly id=city"+i+" class='form-control' /><br>"); 
 							$('#city'+i).val(name);
 						}
 					}

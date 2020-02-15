@@ -87,8 +87,8 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		
 		//<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
 		if($is_deleted==0){
-		echo "<tr title='$salesman'>
-		<td><a href='delete_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/del.png' style='width:28px; margin:auto;'></a></td>
+		echo "<tr title='$salesman' id='$school_id'>
+		<td><img src='img/del.png' onclick='delete_school($school_id)' style='width:28px; margin:auto;'></td>
 		<td><a href='edit_school.php?edit_id=$school_id'><img src='img/edit.png' style='width:20px; margin:auto;'></a></td>
 		<td>$n</td>
 		<td class='link'>$school_name</td>
@@ -155,6 +155,9 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		font-weight:bold;
 		color:#E85A4F;
 		text-align:left;
+	}
+	.hidden{
+		display:none;
 	}
 	</style>
 </head>
@@ -414,6 +417,29 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 			
         });
 		
+		function delete_school(school_id){
+			$("#"+school_id).addClass('hidden');
+			$.ajax({
+			url: 'delete_school2.php',
+			type: 'GET',
+			data: {'del_id':school_id},
+			dataType: 'json',
+			success:function(response){
+				console.log(response[0]['message']);
+				$('.overlay1').addClass('active');
+				new Attention.Alert({
+					title: 'Start Day',
+					content: response[0]['message'],
+					afterClose: () => {
+                        $('.overlay1').removeClass('active');
+						location.reload();
+                    }
+				});
+			}
+			
+		});
+			
+		}
 		
 		function fnExcelReport()
 		{

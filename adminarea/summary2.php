@@ -171,7 +171,7 @@ function goFailure(){
 						<?php
 						$n=1;
 							
-						$sql="select * from school_list where user_id ='$salesman_id' and is_deleted='0'";
+						$sql="select * from school_list where user_id ='$salesman_id'  and is_deleted='0'";
 
 						$result = mysqli_query($conn,$sql);
 
@@ -556,6 +556,13 @@ function goFailure(){
 								 $s_visit0=0;
 							 }
 							
+							$s_t = "select * from school_list WHERE user_id ='$salesman_id' and total_visits!='0' and is_deleted='0'" ;
+
+							$m_t = mysqli_query($conn,$s_t);
+							$f_t = mysqli_num_rows($m_t);
+
+							
+							
 							//counting complete
 	
 							echo "<tr>
@@ -666,7 +673,7 @@ function goFailure(){
 						<td>Total</td>
 						<td></td>
 						<td>$total_school</td>
-						<td>$total_visited</td>
+						<td>$f_t</td>
 						<td>$total_sep</td>
 						<td>$total_oct</td>
 						<td>$total_nov</td>

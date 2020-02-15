@@ -91,7 +91,7 @@ padding-top:15px;
 				<th>School Id</th>
 				<th>School Board</th>
 				<th>School Strength</th>
-				<th>School Email</th>
+				<th>Total Visits</th>
 				<th>Contact No.</th>
 				<th>School Address</th>
 				<th>School City</th>
@@ -112,7 +112,7 @@ padding-top:15px;
 					$s_code = $row_attendance['id'];
 					$s_board = $row_attendance['school_board'];
 					$s_strength = $row_attendance['school_strength'];
-					$s_email = $row_attendance['school_email'];
+					$s_email = $row_attendance['total_visits'];
 					$s_contact = $row_attendance['school_contact'];
 					$s_address = $row_attendance['school_address'];
 					$s_state = $row_attendance['school_state'];

@@ -6,7 +6,7 @@ $state = $_POST['state'];
 $city = $_POST['city'];  
 $u_id = $_SESSION['user_id'];
 
-$sql = "select * from school_list where school_state ='$state' AND school_city ='$city' AND user_id='$u_id' order by school_name";
+$sql = "select * from school_list where school_state ='$state' AND school_city ='$city' AND user_id='$u_id' AND is_deleted='0' order by school_name";
 
 $result = mysqli_query($conn,$sql);
 

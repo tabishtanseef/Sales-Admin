@@ -73,6 +73,7 @@ header ("location:login.php");
 		<li class="active"><a data-toggle="tab" href="#home">School</a></li>
 		<li><a data-toggle="tab" href="#menu1">Contact Person</a></li>
 		<li><a data-toggle="tab" href="#menu2">Bookseller</a></li>
+		<li><a data-toggle="tab" href="#menu3">Drop List</a></li>
 	</ul>
 
   <div class="tab-content">
@@ -86,7 +87,7 @@ header ("location:login.php");
 				<th>School Id</th>
 				<th>School Board</th>
 				<th>School Strength</th>
-				<th>School Email</th>
+				<th>Total Visits</th>
 				<th>Contact No.</th>
 				<th>School Address</th>
 				<th>School City</th>
@@ -97,7 +98,7 @@ header ("location:login.php");
 				 $n=1;
 				 $user_id=$_SESSION['user_id'];
 				$user_name=$_SESSION['user_name'];
-				$get_attendance="select * from school_list where user_id='$user_id' order by school_name";
+				$get_attendance="select * from school_list where user_id='$user_id' and is_deleted='0' order by school_name";
 				$run_attendance= mysqli_query($conn, $get_attendance);
 				 
 				while($row_attendance=mysqli_fetch_array($run_attendance))
@@ -106,7 +107,7 @@ header ("location:login.php");
 					$s_code = $row_attendance['id'];
 					$s_board = $row_attendance['school_board'];
 					$s_strength = $row_attendance['school_strength'];
-					$s_email = $row_attendance['school_email'];
+					$s_email = $row_attendance['total_visits'];
 					$s_contact = $row_attendance['school_contact'];
 					$s_address = $row_attendance['school_address'];
 					$s_state = $row_attendance['school_state'];
@@ -152,7 +153,7 @@ header ("location:login.php");
 					$n=1;
 					$user_id=$_SESSION['user_id'];
 					$user_name=$_SESSION['user_name'];
-					$get_attendance="select * from contact_person_list where user_id='$user_id'";
+					$get_attendance="select * from contact_person_list where user_id='$user_id' and is_deleted='0' ";
 					$run_attendance= mysqli_query($conn, $get_attendance);
 					 
 					while($row_attendance=mysqli_fetch_array($run_attendance))
@@ -226,6 +227,62 @@ header ("location:login.php");
 				?>
 				</tbody>
 			</table>
+		</div>
+		</div>
+    </div>
+	<div id="menu3" class="tab-pane fade">
+		<div class="row sub" style="margin-top:2%;">
+		<div class="col-sm-12 horizontal-scroll">
+			<table class="table table-responsive w-100 d-block d-md-table" style="width:100%;">
+				<thead>
+				<th>Sr. No.</th>
+				<th>School Name</th>
+				<th>School Id</th>
+				<th>School Board</th>
+				<th>School Strength</th>
+				<th>Total Visits</th>
+				<th>Contact No.</th>
+				<th>School Address</th>
+				<th>School City</th>
+				<th>School State</th>
+				</thead>
+				<tbody>
+				<?php
+				$n=1;
+				$user_id=$_SESSION['user_id'];
+				$user_name=$_SESSION['user_name'];
+				$get_attendance="select * from school_list where user_id='$user_id'  and is_deleted='1' order by school_name";
+				$run_attendance= mysqli_query($conn, $get_attendance);
+				while($row_attendance=mysqli_fetch_array($run_attendance))
+				{
+					$s_name = $row_attendance['school_name'];
+					$s_code = $row_attendance['id'];
+					$s_board = $row_attendance['school_board'];
+					$s_strength = $row_attendance['school_strength'];
+					$s_email = $row_attendance['total_visits'];
+					$s_contact = $row_attendance['school_contact'];
+					$s_address = $row_attendance['school_address'];
+					$s_state = $row_attendance['school_state'];
+					$s_city = $row_attendance['school_city'];
+					
+					echo "<tr>
+					<td>$n</td>
+					<td>$s_name</td>
+					<td>$s_code</td>
+					<td>$s_board</td>
+					<td>$s_strength</td>
+					<td>$s_email</td>
+					<td>$s_contact</td>
+					<td>$s_address</td>
+					<td>$s_city</td>
+					<td>$s_state</td>
+					</tr>
+					";
+				  $n++; 
+				}
+				?>
+			</tbody>
+		</table>
 		</div>
 		</div>
     </div>

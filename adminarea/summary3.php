@@ -210,17 +210,12 @@ function goFailure(){
 						$final_3_visit = 0;
 						$final_3p_visit = 0;
 						
+						
+						
 						while($i < $new){
 							
 							//counting no. of schools in particular city
 							
-							$sql2 = "select * from school_list WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and is_deleted='0'" ;
-
-							$result2 = mysqli_query($conn,$sql2);
-
-							$j = mysqli_num_rows ( $result2 );
-							 
-							$total_school = $total_school + $j;
 							
 							//CBSE
 														
@@ -271,22 +266,6 @@ function goFailure(){
 
 							//counting no. of visited schools in particular city
 
-							$sql3 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and is_deleted='0'" ;
-
-							$result3 = mysqli_query($conn,$sql3);
-
-							$visited_schools = array();
-							while($row = mysqli_fetch_array($result3) ){
-								$name = $row['school_id'];
-								$snm = $row['school_name'];
-								$k = array_push($visited_schools, $name);
-								$visited_schools = array_values(array_unique($visited_schools,SORT_REGULAR));
-									
-							}
-							
-							$k = count($visited_schools);
-							
-							$total_visited = $total_visited + $k;
 							
 							//CBSE
 							$sql31 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='CBSE' and is_deleted='0'" ;
@@ -323,19 +302,18 @@ function goFailure(){
 								
 								$db_month=date("F",$time);
 								
-								
-								 if($db_month == "January"){ $jan1++; }
-								 else if($db_month == "February"){ $feb1++; }
-								 else if($db_month == "March"){ $mar1++; }
-								 else if($db_month == "April"){ $apr1++; }
-								 else if($db_month == "May"){ $may1++; }
-								 else if($db_month == "June"){ $jun1++; }
-								 else if($db_month == "July"){ $jul1++; }
-								 else if($db_month == "August"){ $aug1++; }
-								 else if($db_month == "September"){ $sep1++; }
-								 else if($db_month == "October"){ $oct1++; }
-								 else if($db_month == "November"){ $nov1++; }
-								 else if($db_month == "December"){ $dec1++; }
+								if($db_month == "January"){ $jan1++; }
+								else if($db_month == "February"){ $feb1++; }
+								else if($db_month == "March"){ $mar1++; }
+								else if($db_month == "April"){ $apr1++; }
+								else if($db_month == "May"){ $may1++; }
+								else if($db_month == "June"){ $jun1++; }
+								else if($db_month == "July"){ $jul1++; }
+								else if($db_month == "August"){ $aug1++; }
+								else if($db_month == "September"){ $sep1++; }
+								else if($db_month == "October"){ $oct1++; }
+								else if($db_month == "November"){ $nov1++; }
+								else if($db_month == "December"){ $dec1++; }
 							}
 							
 							$tabish = count($u_cbse);
@@ -376,7 +354,8 @@ function goFailure(){
 							}
 							
 							$k1 = count($visited_schools1);
-							
+							echo "<pre>";
+							print_r ($visited_schools1);
 							
 							
 							
@@ -464,7 +443,8 @@ function goFailure(){
 							}
 							
 							$k2 = count($visited_schools2);
-							
+							echo "<pre>";
+							print_r ($visited_schools2);
 							//STATE
 							$sql33 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='STATE' and is_deleted='0'" ;
 
@@ -538,13 +518,12 @@ function goFailure(){
 								else if($final_result > 3){
 									$s_visit3p++;
 									$s_visit0--;
-								}
-								
-								
+								}	
 							}
 							
 							$k3 = count($visited_schools3);
-							
+							echo "<pre>";
+							print_r ($visited_schools3);
 							
 							 if($c_visit0 < 0){
 								 $c_visit0=0;
@@ -558,6 +537,9 @@ function goFailure(){
 							
 							//counting complete
 	
+						
+						
+						
 							echo "<tr>
 							<td>$n</td>
 							<td>$users_arr[$i]</td>
@@ -660,6 +642,17 @@ function goFailure(){
 							$i++;
 							
 						}
+						$aru="select * from school_list where user_id ='$salesman_id' and is_deleted='0'";
+
+						$khush = mysqli_query($conn,$aru);
+						
+						$total_school = mysqli_num_rows($khush);
+						
+						$aru1="select * from school_list where user_id ='$salesman_id' and is_deleted='0' and total_visits!='0'";
+
+						$khush1 = mysqli_query($conn,$aru1);
+						
+						$total_visited = mysqli_num_rows($khush1);
 						
 						echo "<tr>
 						<td></td>
