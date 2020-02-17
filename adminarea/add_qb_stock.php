@@ -23,6 +23,14 @@ if (isset($_POST['update'])) {
 	$science = mysqli_real_escape_string($conn, $_POST['science']);
 	$sst = mysqli_real_escape_string($conn, $_POST['sst']);
 	
+	$english2 = mysqli_real_escape_string($conn, $_POST['english2']);
+	$hindi_a2 = mysqli_real_escape_string($conn, $_POST['hindi_a2']);
+	$hindi_b2 = mysqli_real_escape_string($conn, $_POST['hindi_b2']);
+	$math_b2 = mysqli_real_escape_string($conn, $_POST['math_b2']);
+	$math_s2 = mysqli_real_escape_string($conn, $_POST['math_s2']);
+	$science2 = mysqli_real_escape_string($conn, $_POST['science2']);
+	$sst2 = mysqli_real_escape_string($conn, $_POST['sst2']);
+	
 	$biology = mysqli_real_escape_string($conn, $_POST['biology']);
 	$chemistry = mysqli_real_escape_string($conn, $_POST['chemistry']);
 	$computer = mysqli_real_escape_string($conn, $_POST['computer']);
@@ -34,12 +42,33 @@ if (isset($_POST['update'])) {
 	$physics = mysqli_real_escape_string($conn, $_POST['physics']);
 	$hindi = mysqli_real_escape_string($conn, $_POST['hindi']);
 	
-	if(mysqli_query($conn, "Update qb_stock SET cbse1 = cbse1 + '$english', cbse2 = cbse2 + '$hindi_a', cbse3 = cbse3 + '$hindi_b', cbse4 = cbse4 + '$math_b', 
-	cbse5 = cbse5 + '$math_s', cbse6 = cbse6 + '$science', cbse7 = cbse7 + '$sst', icse1 = icse1 + '$biology', icse2 = icse2 + '$chemistry', icse3 = icse3 + '$computer', 
-	 icse4 = icse4 + '$geography', icse5 = icse5 + '$history', icse6 = icse6 + '$literature', icse7 = icse7 + '$language',  icse8 = icse8 + '$math',  
-	 icse9 = icse9 + '$physics',  icse10 = icse10 + '$hindi' where user_id ='$salesman_id'")) {
+	$biology2 = mysqli_real_escape_string($conn, $_POST['biology2']);
+	$chemistry2 = mysqli_real_escape_string($conn, $_POST['chemistry2']);
+	$computer2 = mysqli_real_escape_string($conn, $_POST['computer2']);
+	$geography2 = mysqli_real_escape_string($conn, $_POST['geography2']);
+	$history2 = mysqli_real_escape_string($conn, $_POST['history2']);
+	$literature2 = mysqli_real_escape_string($conn, $_POST['literature2']);
+	$language2 = mysqli_real_escape_string($conn, $_POST['language2']);
+	$math2 = mysqli_real_escape_string($conn, $_POST['math2']);
+	$physics2 = mysqli_real_escape_string($conn, $_POST['physics2']);
+	$hindi2 = mysqli_real_escape_string($conn, $_POST['hindi2']);
+	
+	if(mysqli_query($conn, "Update qb_stock SET cbse1 = cbse1 + '$english' - '$english2', cbse2 = cbse2 + '$hindi_a' - '$hindi_a2', cbse3 = cbse3 + '$hindi_b' - '$hindi_b2',
+	cbse4 = cbse4 + '$math_b' - '$math_b2',	cbse5 = cbse5 + '$math_s' - '$math_s2', cbse6 = cbse6 + '$science' - '$science2', cbse7 = cbse7 + '$sst' - '$sst2', 
+	icse1 = icse1 + '$biology' - '$biology2', icse2 = icse2 + '$chemistry' - '$chemistry2', icse3 = icse3 + '$computer' - '$computer2', 
+	 icse4 = icse4 + '$geography' - '$geography2', icse5 = icse5 + '$history' - '$history2', icse6 = icse6 + '$literature' - '$literature2',
+	 icse7 = icse7 + '$language' - '$language2',  icse8 = icse8 + '$math' - '$math2', 
+	 icse9 = icse9 + '$physics' - '$physics2',  icse10 = icse10 + '$hindi' - '$hindi2' where user_id ='$salesman_id'")) {
 		 
-		$success_message = "Successfully Updated!";
+		 
+		if(mysqli_query($conn, "Update qb_stock SET cbse1_a = cbse1_a + '$english' - '$english2', cbse2_a = cbse2_a + '$hindi_a' - '$hindi_a2', cbse3_a = cbse3_a + '$hindi_b' - '$hindi_b2',
+		cbse4_a = cbse4_a + '$math_b' - '$math_b2',	cbse5_a = cbse5_a + '$math_s' - '$math_s2', cbse6_a = cbse6_a + '$science' - '$science2', cbse7_a = cbse7_a + '$sst' - '$sst2', 
+		icse1_a = icse1_a + '$biology' - '$biology2', icse2_a = icse2_a + '$chemistry' - '$chemistry2', icse3_a = icse3_a + '$computer' - '$computer2', 
+		icse4_a = icse4_a + '$geography' - '$geography2', icse5_a = icse5_a + '$history' - '$history2', icse6_a = icse6_a + '$literature' - '$literature2',
+		icse7_a = icse7_a + '$language' - '$language2',  icse8_a = icse8_a + '$math' - '$math2', 
+		icse9_a = icse9_a + '$physics' - '$physics2',  icse10_a = icse10_a + '$hindi' - '$hindi2' where user_id ='$salesman_id'")){
+			$success_message = "Successfully Updated!";
+		}
 	} 
 	else {
 		$error_message = "Error in Updating...Please try again later!";
@@ -51,7 +80,7 @@ if (isset($_POST['update'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Edit School Details - Good Luck Sales - Digigoodluck.com</title>
+    <title>Add QB Stock - Good Luck Sales - Digigoodluck.com</title>
 	<meta name="Description" content="Good Luck Sales is a software tool for the salesman working for a publication all over the country, to maintain all the records within the Good Luck Sales app with proper formatting and can deliver daily report precisely and on time.">
 	<meta name="Keywords" content="digital, sales, marketing, software, marketing software, e-learning, digital learning, sales software, e-book software, e-books, electronic books, electronic learning, digigoodluck, goodluck, digigoodluck.com, goodluck.com, gl, g, good, luck, bad luck, 2019, 2018, saharanpur, delhi road, publication, good luck publishers, goodluck publication">
     <link rel="shortcut icon" href="img/favicon.png">
@@ -88,7 +117,7 @@ if (isset($_POST['update'])) {
 		width: 100%;
 	}
 	td input{
-		width:100px !important;
+		width:50px !important;
 		text-align:center;
 	}
 	.link{
@@ -166,49 +195,63 @@ if (isset($_POST['update'])) {
 										<table class="table table-hover table-responsive w-100 d-block d-md-table" style="width:100%;">
 											<tbody>
 											<tr>
-											<td colspan="4" style="padding-top:20px; font-size:25px;" ><center>CBSE</center></td>
+											<td colspan="6" style="padding-top:20px; font-size:25px;" ><center>CBSE</center></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" >English</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse1; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="english" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="english2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" >Hindi A</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse2; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="hindi_a" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="hindi_a2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Hindi B</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse3; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="hindi_b" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="hindi_b2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Math Basic</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse4; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="math_b" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="math_b2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Math Standard</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse5; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="math_s" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="math_s2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Science</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse6; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="science" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="science2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Social Studies</td>
 											<td><input type="text" name="" readonly value="<?php echo $cbse7; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="sst" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="sst2" class="form-control" /></td>
 											</tr>
 											</tbody>
 										</table>
@@ -217,67 +260,87 @@ if (isset($_POST['update'])) {
 										<table class="table table-hover table-responsive w-100 d-block d-md-table" style="width:100%;">
 											<tbody>
 											<tr>
-											<td colspan="4" style="padding-top:20px; font-size:25px;" ><center>ICSE</center></td>
+											<td colspan="6" style="padding-top:20px; font-size:25px;" ><center>ICSE</center></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" >Biology</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse1; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="biology" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="biology2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;" >Chemistry</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse2; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="chemistry" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="chemistry2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Computer</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse3; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="computer" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="computer2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Geography</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse4; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="geography" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="geography2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">History & Civics</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse5; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="history" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="history2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">English Literature</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse6; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="literature" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="literature2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">English Language</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse7; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="language" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="language2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Math</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse8; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="math" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="math2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Physics</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse9; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="physics" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="physics2" class="form-control" /></td>
 											</tr>
 											<tr>
 											<td style="padding-top:20px;">Hindi</td>
 											<td><input type="text" name="" readonly value="<?php echo $icse10; ?>"  class="form-control" /></td>
 											<td style="width:50px; font-size:24px; margin:auto;"><center>+</center></td>
 											<td><input type="text" name="hindi" class="form-control" /></td>
+											<td style="width:50px; font-size:24px; margin:auto;"><center>-</center></td>
+											<td><input type="text" name="hindi2" class="form-control" /></td>
 											</tr>
 											</tbody>
 										</table>

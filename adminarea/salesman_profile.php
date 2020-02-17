@@ -223,7 +223,7 @@ if (isset($_POST['go'])) {
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">
 							<div class="form-group">
-								<center><a target="_blank" href="school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="School List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
+								<center><a target="_blank" href="qb_school_list.php?salesman_id=<?php echo $id;?>"><input type="submit" name="" value="QB School List" class="btn" style="font-size:14px; width:90%; background:#fab017; font-weight:bold;" /></a></center>
 							</div>
 						</div>
 						<div class="col-md-10" style="margin:auto; margin-top:15px;">

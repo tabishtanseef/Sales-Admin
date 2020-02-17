@@ -66,28 +66,14 @@ if (isset($_POST['add_visit'])) {
 			echo"<script>alert('Visit already added!');</script>";
 		}
 		else{
-			$g1 = "SELECT * FROM qb_stock WHERE user_id='$u_id'";
-			$r1 = mysqli_query($conn,$g1);
-			while($ch1=mysqli_fetch_array($r1)){
-				$sub_c = $ch1[$subject_code];
-			}
-				
-			if($sub_c>0){
-			if(mysqli_query($conn, "UPDATE qb_stock SET $subject_code = $subject_code - 1 WHERE user_id = '".$u_id."' ")){
-				$success_message = "Visit Successfully Added!";
-			}
-			
-			if(mysqli_query($conn, "INSERT INTO qb_visit(user_id, user_name, date, time, day, t_name, t_num, t_email, subject_code, subject, state, city, school_id, school_name, board, strength, address) VALUES
-			('". $u_id ."','" . $u_name . "','" . $date . "', '". $currentTimeinSeconds ."', '". $day ."', '" . $t_name . "', '" . $t_num . "', '" . $t_email . "', '" . $subject_code . "', '" . $subject . "', '". $state . "','". $school_city ."','". $school_id ."','". $school_name ."','". $board ."','". $strength ."','". $address ."')")) {
-				
-				$success_message = "Visit Successfully Added!";
+			if(mysqli_query($conn, "UPDATE qb_stock SET $subject_code = $subject_code - 1 WHERE user_id = '".$u_id."' ")){			
+				if(mysqli_query($conn, "INSERT INTO qb_visit(user_id, user_name, date, time, day, t_name, t_num, t_email, subject_code, subject, state, city, school_id, school_name, board, strength, address) VALUES
+				('". $u_id ."','" . $u_name . "','" . $date . "', '". $currentTimeinSeconds ."', '". $day ."', '" . $t_name . "', '" . $t_num . "', '" . $t_email . "', '" . $subject_code . "', '" . $subject . "', '". $state . "','". $school_city ."','". $school_id ."','". $school_name ."','". $board ."','". $strength ."','". $address ."')")) {
+					$success_message = "Visit Successfully Added!";
+				}
 			}
 			else {
 				$error_message = "Error in Adding...Please try again later!";
-			}
-			}
-			else{
-				$error_message2 = "Error in Adding...Book Out of stock!";
 			}
 		}
 	}
@@ -352,23 +338,23 @@ function goFailure2(){
 
 <script type="text/javascript">
 $(document).ready(function () {
-$("#sidebar").mCustomScrollbar({
-	theme: "minimal"
-});
+	$("#sidebar").mCustomScrollbar({
+		theme: "minimal"
+	});
 
-$('#dismiss, .overlay').on('click', function () {
-	$('#sidebar').removeClass('active');
-	$('.overlay').removeClass('active');
-	 $('#upar').addClass('fixed-top');
-});
+	$('#dismiss, .overlay').on('click', function () {
+		$('#sidebar').removeClass('active');
+		$('.overlay').removeClass('active');
+		 $('#upar').addClass('fixed-top');
+	});
 
-$('#sidebarCollapse').on('click', function () {
-	$('#sidebar').addClass('active');
-	$('#upar').removeClass('fixed-top');
-	$('.overlay').addClass('active');
-	$('.collapse.in').toggleClass('in');
-	$('a[aria-expanded=true]').attr('aria-expanded', 'false');
-});
+	$('#sidebarCollapse').on('click', function () {
+		$('#sidebar').addClass('active');
+		$('#upar').removeClass('fixed-top');
+		$('.overlay').addClass('active');
+		$('.collapse.in').toggleClass('in');
+		$('a[aria-expanded=true]').attr('aria-expanded', 'false');
+	});
 
 var board = "";
 var strength = "";
@@ -379,7 +365,7 @@ $("#city").change(function(){
 	var state = "<?php echo $state; ?>";
 	
 	$.ajax({
-		url: 'get_school.php',
+		url: 'get_qb_school.php',
 		type: 'POST',
 		data: {'state':state,'city':city},
 		dataType: 'json',
@@ -409,7 +395,7 @@ $("#school").change(function(){
 	$("#school_hidden").val(schoolname);
 		
 	$.ajax({
-		url: 'get_school_details.php',
+		url: 'get_qb_school_details.php',
 		type: 'POST',
 		data: {'state':state,'city':city,'school':school},
 		dataType: 'json',
@@ -437,25 +423,6 @@ $("#school").change(function(){
 		}
 	});
 	
-	$.ajax({
-		url: 'get_person.php',
-		type: 'POST',
-		data: {'state':state,'city':city,'school':school},
-		dataType: 'json',
-		success:function(response){
-
-			var len = response.length;
-
-			$("#person").empty();
-			$("#person").append("<option disabled selected value=''>Contact Person List</option>");
-			for( var i = 0; i<len; i++){
-				var id = response[i]['id'];
-				var name = response[i]['name'];
-
-				$("#person").append("<option value='"+id+"'>"+name+"</option>");
-			}
-		}
-	});
 });
 
 $("#cbse_qb").change(function(){
@@ -473,34 +440,6 @@ $("#icse_qb").change(function(){
 	$("#t_num").removeAttr('readonly');
 	$("#t_email").removeAttr('readonly');
 });
-
-
-$("#person").change(function(){
-	var state = "<?php echo $state; ?>";
-	var city = $('#city').val();
-	var p_id = $(this).val();
-	var school = $("#school option:selected").text();
-	var personname = $("#person option:selected").text();
-	$("#person_hidden").val(personname);
-	
-	
-	$.ajax({
-		url: 'get_contact_no.php',
-		type: 'POST',
-		data: {'state':state,'city':city,'school':school,'p_name':p_id},
-		dataType: 'json',
-		success:function(response){
-
-			var len = response.length;
-
-			for( var i = 0; i<len; i++){
-				var num = response[i]['num'];
-				$("#num").val(num);
-			}
-		}
-	});
-});
-
 
 
 });
