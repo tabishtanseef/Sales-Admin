@@ -219,12 +219,12 @@ function visit($run_attendance) {
 						<tbody>
 						<?php
 						if(isset($salesman_id) && isset($start_date) && isset($end_date)){
-							$get_attendance="select * from visits where user_id ='$salesman_id' and date BETWEEN '$start_date' AND '$end_date' order by date DESC, id DESC";
+							$get_attendance="select * from visits where user_id ='$salesman_id' and date BETWEEN '$start_date' AND '$end_date' and is_deleted='0' order by date DESC, id DESC";
 							$run_attendance= mysqli_query($conn, $get_attendance);
 							visit($run_attendance);
 						}
 						else{
-							$get_attendance="select * from visits where user_id ='$salesman_id' order by date DESC, id DESC";
+							$get_attendance="select * from visits where user_id ='$salesman_id' and is_deleted='0' order by date DESC, id DESC";
 							$run_attendance= mysqli_query($conn, $get_attendance);
 							visit($run_attendance);
 						}

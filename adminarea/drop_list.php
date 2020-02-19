@@ -63,8 +63,7 @@ if (isset($_POST['go'])) {
 			$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
 	}
 	if(!$error){
-		header ("location:s_list.php?salesman=$salesman&state=$state&city=$city");
-		
+		header ("location:drop_list.php?salesman=$salesman&state=$state&city=$city");
 	}
 	
 }
@@ -86,7 +85,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$school_city = $row_attendance['school_city'];
 		$school_state = $row_attendance['school_state'];
 		$is_deleted = $row_attendance['is_deleted'];
-		
 		
 		//<td><a href='restore_school.php?del_id=$school_id&sal_id=$salesman_id'><img src='img/restore2.png' style='width:28px; margin:auto;'></a></td>
 		if($is_deleted==1){

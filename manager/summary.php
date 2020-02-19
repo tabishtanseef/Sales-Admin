@@ -171,7 +171,7 @@ function goFailure(){
 						<?php
 						$n=1;
 							
-						$sql="select * from school_list where user_id ='$salesman_id'";
+						$sql="select * from school_list where user_id ='$salesman_id'  and is_deleted='0'";
 
 						$result = mysqli_query($conn,$sql);
 
@@ -214,7 +214,7 @@ function goFailure(){
 							
 							//counting no. of schools in particular city
 							
-							$sql2 = "select * from school_list WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id'" ;
+							$sql2 = "select * from school_list WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id'" ;
 
 							$result2 = mysqli_query($conn,$sql2);
 
@@ -224,7 +224,7 @@ function goFailure(){
 							
 							//CBSE
 														
-							$sql21 = "select * from school_list WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and school_board = 'CBSE'" ;
+							$sql21 = "select * from school_list WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id' and school_board = 'CBSE'" ;
 
 							$result21 = mysqli_query($conn,$sql21);
 
@@ -238,7 +238,7 @@ function goFailure(){
 							
 							//ICSE
 														
-							$sql22 = "select * from school_list WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and school_board = 'ICSE'" ;
+							$sql22 = "select * from school_list WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id' and school_board = 'ICSE'" ;
 
 							$result22 = mysqli_query($conn,$sql22);
 
@@ -253,7 +253,7 @@ function goFailure(){
 							
 							//STATE
 														
-							$sql23 = "select * from school_list WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and school_board = 'STATE'" ;
+							$sql23 = "select * from school_list WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id' and school_board = 'STATE'" ;
 
 							$result23 = mysqli_query($conn,$sql23);
 
@@ -271,7 +271,7 @@ function goFailure(){
 
 							//counting no. of visited schools in particular city
 
-							$sql3 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id'" ;
+							$sql3 = "select * from visits WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id'" ;
 
 							$result3 = mysqli_query($conn,$sql3);
 
@@ -289,7 +289,7 @@ function goFailure(){
 							$total_visited = $total_visited + $k;
 							
 							//CBSE
-							$sql31 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='CBSE'" ;
+							$sql31 = "select * from visits WHERE school_city ='$users_arr[$i]' and is_deleted='0' and user_id='$salesman_id' and board ='CBSE'" ;
 
 							$result31 = mysqli_query($conn,$sql31);
 
@@ -344,7 +344,7 @@ function goFailure(){
 							for($tab1=0; $tab1<$tabish; $tab1++){
 								
 								
-								$my_query = "select * from visits WHERE school_id ='$u_cbse[$tab1]'" ;
+								$my_query = "select * from visits WHERE school_id ='$u_cbse[$tab1]' and is_deleted='0'" ;
 
 
 								$my_result = mysqli_query($conn,$my_query);
@@ -384,7 +384,7 @@ function goFailure(){
 							
 							
 							//ICSE
-							$sql32 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='ICSE'" ;
+							$sql32 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='ICSE' and is_deleted='0'" ;
 
 							$result32 = mysqli_query($conn,$sql32);
 
@@ -466,7 +466,7 @@ function goFailure(){
 							$k2 = count($visited_schools2);
 							
 							//STATE
-							$sql33 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='STATE'" ;
+							$sql33 = "select * from visits WHERE school_city ='$users_arr[$i]' and user_id='$salesman_id' and board ='STATE' and is_deleted='0'" ;
 
 							$result33 = mysqli_query($conn,$sql33);
 
@@ -517,7 +517,7 @@ function goFailure(){
 							for($tab3=0; $tab3<$tabish3; $tab3++){
 								
 								
-								$my_query = "select * from visits WHERE school_id ='$u_state[$tab3]'" ;
+								$my_query = "select * from visits WHERE school_id ='$u_state[$tab3]' and is_deleted='0'" ;
 
 								$my_result = mysqli_query($conn,$my_query);
 
