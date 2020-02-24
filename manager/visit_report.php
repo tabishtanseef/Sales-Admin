@@ -139,7 +139,6 @@ function visit($run_attendance) {
 		clear: both;
 		width: 100%;
 	}
-
 	</style>
 </head>
 

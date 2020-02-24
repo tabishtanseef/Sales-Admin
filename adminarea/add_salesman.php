@@ -54,8 +54,17 @@ if (isset($_POST['signup'])) {
 	if (!$error) {
 	
 		if(mysqli_query($conn, "INSERT INTO users(user, email, num, pass, school_state) VALUES('" . $name . "', '" . $email . "', '" . $num . "', '" . md5($password) . "','". $state ."')")) {
-			$success_message = "Salesman Successfully Added!";
-		} else {
+			
+			$gu = "SELECT * FROM users order by uid DESC";
+			$ru = mysqli_query($conn,$gu);
+			$chu = mysqli_fetch_array($ru);
+			$qb_id = $chu['uid'];
+			$qb_name = $chu['user'];
+			if(mysqli_query($conn, "INSERT INTO qb_stock(user_id, user_name) VALUES('" . $qb_id . "', '" . $qb_name . "')")) {
+				$success_message = "Salesman Successfully Added!";
+			}			
+		} 
+		else {
 			$error_message = "Error in registering...Please try again later!";
 		}
 	}
