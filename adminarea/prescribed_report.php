@@ -529,17 +529,13 @@ if (isset($_POST['go'])) {
 							<td></td>
 							<td>$supply</td>
 							<td>$specimen_given</td>
-							</tr>
-							
-							";
+							</tr>";
 						}
 						?>
 						</tbody>
 					</table>
 				</div>
-			</div>
-			
-			
+			</div>			
         </div>
     </div>
 	<iframe id="txtArea1" style="display:none"></iframe>

@@ -3,20 +3,16 @@
 session_start();
 include_once("include/db_connect.php");
 if (!isset($_SESSION['admin_id'])) {
-header ("location:login.php");
+	header ("location:login.php");
 }
-
 if(isset($_GET['salesman_id']))
 {
 	$_SESSION['salesman_id'] =$_GET['salesman_id'];
 }
 $salesman_id = $_SESSION['salesman_id'];
-
-
 ?>
 
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +30,6 @@ $salesman_id = $_SESSION['salesman_id'];
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 	<script src="js/date_time.js"></script> 
 	<style>
-
 	th, td{
 		text-align:center;
 		font-size:12px;
@@ -60,7 +55,6 @@ $salesman_id = $_SESSION['salesman_id'];
 		clear: both;
 		width: 100%;
 	}
-
 	</style>
 </head>
 <body>
@@ -110,7 +104,6 @@ $salesman_id = $_SESSION['salesman_id'];
 				echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp; CBSE Question Bank Visit of $salesman</h4>";
 			}
 			?>
-			
 			<div class="row sub" style="margin-top:2%;">
 				<div class="col-sm-12 horizontal-scroll">
 					<table id="school_list2" class="table table-hover table-striped table-bordered table-responsive w-100 d-block d-md-table" style="width:100%;">
