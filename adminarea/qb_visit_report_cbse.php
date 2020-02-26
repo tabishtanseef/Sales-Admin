@@ -81,12 +81,6 @@ $salesman_id = $_SESSION['salesman_id'];
 							<li class="nav-item">
 								<div class="form-group">
 								<span class="text-danger"></span><br>
-									&nbsp;&nbsp;<input type="submit" id="btnExport" onclick="fnExcelReport(); " value="Export ICSE" class="btn" style="background:#35B394; color:white; font-weight:bold;" />
-					             </div>
-					        </li>
-							<li class="nav-item">
-								<div class="form-group">
-								<span class="text-danger"></span><br>
 									&nbsp;&nbsp;<input type="submit" id="btnExport" onclick="fnExcelReport2(); " value="Export CBSE" class="btn" style="background:#35B394; color:white; font-weight:bold;" />
 					             </div>
 					        </li>

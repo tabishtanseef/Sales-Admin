@@ -216,7 +216,7 @@ function goFailure(){
 						<select name="school_city" id="city" class="form-control" />
 						 <option selected disabled >Select City</option>
 						<?php
-						  $res=mysqli_query($conn,"select * from citylist where state='$state'");
+						  $res=mysqli_query($conn,"select * from citylist where state='$state' order by city_name");
 						  while($row=mysqli_fetch_array($res))
 						  {  
 						  ?>
