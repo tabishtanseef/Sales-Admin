@@ -71,6 +71,7 @@ header ("location:login.php");
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">School Visits</a></li>
     <li><a data-toggle="tab" href="#menu1">Bookseller Visits</a></li>
+    <li><a data-toggle="tab" href="#menu2">QB Visits</a></li>
   </ul>
 
   <div class="tab-content">
@@ -207,6 +208,59 @@ header ("location:login.php");
 				  $n++; 
 				}
 				?>
+			</tbody>
+			</table>
+		</div>
+		</div>
+    </div>
+	<div id="menu2" class="tab-pane fade">
+		<div class="row sub" style="margin-top:2%;">
+		<div class="col-sm-12 horizontal-scroll">
+			<table class="table table-responsive w-100 d-block d-md-table" style="width:100%;">
+				<thead>
+				<th>Sr. No.</th>
+				<th>Date</th>
+				<th>School Name</th>
+				<th>Board</th>
+				<th>Subject</th>
+				<th>Teacher</th>
+				<th>Contact No.</th>
+				<th>City</th>
+				</thead>
+				<tbody>
+				<?php
+				$n=1;
+				$user_id=$_SESSION['user_id'];
+				$user_name=$_SESSION['user_name'];
+				$get_attendance="select * from qb_visit where user_id='$user_id' order by date DESC, id DESC";
+				$run_attendance= mysqli_query($conn, $get_attendance);
+				 
+				while($row_attendance=mysqli_fetch_array($run_attendance))
+				{
+					$date = $row_attendance['date'];
+					$t_name = $row_attendance['t_name'];
+					$t_num = $row_attendance['t_num'];
+					$subject = $row_attendance['subject'];
+					$city = $row_attendance['city'];
+					$school_name = $row_attendance['school_name'];
+					$board = $row_attendance['board'];
+					$date = date("d-M-Y", strtotime($date));
+				    echo "<tr>
+				    <td>$n</td>
+				    <td>$date</td>
+				    <td>$school_name</td>
+				    <td>$board</td>
+				    <td>$subject</td>
+				    <td>$t_name</td>
+				    <td>$t_num</td>
+				    <td>$city</td>
+				    </tr>";
+				  $n++; 
+				}
+				
+				?>
+				
+				
 			</tbody>
 			</table>
 		</div>

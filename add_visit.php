@@ -179,8 +179,6 @@ function goFailure(){
     </div>
 
 <div class="container" style="min-height:300px;">
-
-
 <div class="container out">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 well">
@@ -208,9 +206,7 @@ function goFailure(){
 					<?php
 					}
 					?>
-					
 					</span>
-					
 					<div class="form-group">
 						<label for="name">School City</label>
 						<select name="school_city" id="city" class="form-control" />
@@ -301,7 +297,6 @@ function goFailure(){
 					</div>
 				</fieldset>
 			</form>
-			
 		</div>
 	</div>
 </div>

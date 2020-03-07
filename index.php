@@ -87,7 +87,6 @@ body{
 
         <!-- Page Content  -->
         <div id="content">
-
             <nav id="upar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div class="container-fluid">
 					<button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -100,7 +99,6 @@ body{
                     </button>
                 </div>
             </nav>
-
             <h2 style = "margin-top:60px"></h2>
 			<div class="container">
 			<div class="row">
@@ -152,6 +150,18 @@ body{
 			<!--<td><a href="contact_list.php"><img src="img/expense.png" style="width:80%;">-->
 			<br>
 			<span>My Visits</span>
+			</a></td>
+			</tr>
+			<tr>
+			<td><a href="add_qb_school.php"><img src="img/add_qb_school.png" style="width:80%;">
+			<!--<td><a href="add_person.php"><img src="img/stock.png" style="width:80%;">-->
+			<br>
+			<span>Add QB School</span>
+			</a></td>
+			<td><a href="add_qb_visit.php"><img src="img/add_qb_visit.png" style="width:80%;">
+			<!--<td><a href="contact_list.php"><img src="img/expense.png" style="width:80%;">-->
+			<br>
+			<span>Add QB Visit</span>
 			</a></td>
 			</tr>
 			</table>

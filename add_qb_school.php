@@ -168,7 +168,7 @@ function goFailure(){
 		<div class="col-md-4 col-md-offset-4 well">
 			<form role="form" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
 				<fieldset>
-					<legend>Add School</legend>
+					<legend>Add QB School</legend>
 					<span class="text-success">
 					<?php if (isset($success_message))
 					{ 

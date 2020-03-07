@@ -23,6 +23,9 @@
 				<li>
 					<a href="add_bookseller_visit.php">Add Bookseller Visit</a>
 				</li>
+				<li>
+					<a href="add_qb_visit.php">Add QB Visit</a>
+				</li>
 			</ul>
 		</li>
 		<li>
@@ -34,6 +37,9 @@
 				<li>
 					<a href="my_b_visits.php">My Bookseller Visits</a>
 				</li>
+				<li>
+					<a href="my_qb_visits.php">My QB Visits</a>
+				</li>
 			</ul>
 		</li>
 		<li>
@@ -44,6 +50,12 @@
 				</li>
 				<li>
 					<a href="school_list.php">School List</a>
+				</li>
+				<li>
+					<a href="add_qb_school.php">Add QB School</a>
+				</li>
+				<li>
+					<a href="qb_school_list.php">QB School List</a>
 				</li>
 			</ul>
 		</li>
@@ -69,18 +81,10 @@
 				</li>
 			</ul>
 		</li>
-		<!--
 		<li>
-			<a href="#stockSubmenu" data-toggle="collapse" aria-expanded="false">Stock Items</a>
-			<ul class="collapse list-unstyled" id="stockSubmenu">
-				<li>
-					<a href="add_stock.php">Add Stock Item</a>
-				</li>
-				<li>
-					<a href="check_stock.php">Check Stock Left</a>
-				</li>
-			</ul>
+			<a href="qb_stock_report.php" >QB Stock </a>
 		</li>
+		<!--
 		<li>
 			<a href="#expenseSubmenu" data-toggle="collapse" aria-expanded="false">Expense Items</a>
 			<ul class="collapse list-unstyled" id="expenseSubmenu">
