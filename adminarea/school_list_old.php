@@ -113,8 +113,14 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/style5.css">
-
+    <link rel="stylesheet" href="css/stl.css">
+	<link rel="stylesheet" href="MDB/css/mdb.min.css">
+	<!-- Your custom styles (optional) -->
+	<link href="MDB/css/addons/datatables.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -127,7 +133,8 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 	}
 	h4, th{
 	color:#E85A4F;
-
+	font-size:18px !important; 
+	font-weight:bold !important	;
 	}
 	.table-responsive {
 		display:block;
@@ -180,6 +187,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
+								<br>
                                <div class="form-group">
 									<select name="school_state" id="statedd" class="form-control" />
 									 <option selected disabled >Select State</option>
@@ -200,6 +208,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
                             </li>
 							&nbsp;&nbsp;
 							<li class="nav-item active">
+							<br>
                                <div class="form-group">
 									<select name="city" id="city" class="form-control" />
 									<option selected disabled>Select City</option>
@@ -208,6 +217,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
                             </li>
 							&nbsp;&nbsp;
 							<li class="nav-item active">
+							<br>
                                <div class="form-group">
 									<select name="salesman" id="person" class="form-control" />
 									<option selected disabled>Select Salesman</option>
@@ -222,7 +232,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 					        </li>
 							<li class="nav-item">
 								<div class="form-group">
-								<button > EXPORT </button>
 									&nbsp;&nbsp;<input type="submit" id="btnExport" onclick="fnExcelReport();" value="Export to Excel" class="btn" style="background:#35B394; color:white; font-weight:bold;" />
 					             </div>
 					        </li>
@@ -251,7 +260,7 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 			
 			<div class="row sub" style="margin-top:2%;">
 				<div class="col-sm-12 horizontal-scroll">
-					<table id="school_list" class="table table-hover table-responsive w-100 d-block d-md-table" style="width:100%;">
+					<table id="school_list" class="table table-hover table-responsive table-bordered table-striped w-100 d-block d-md-table" style="width:100%;">
 						<thead>
 						<th>Sr. No.</th>
 						<th>School Name</th>
@@ -326,9 +335,18 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="MDB/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="MDB/js/addons/datatables.min.js"></script>
+	<script type="text/javascript" src="MDB/js/mdb.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+			
+			$('#school_list').DataTable();
+			$('.dataTables_length').addClass('bs-select');
+			
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');

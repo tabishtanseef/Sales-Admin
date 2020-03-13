@@ -27,8 +27,16 @@ header ("location:login.php");
 	<script src="js/date_time.js"></script>  
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
-    <!-- Font Awesome JS -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	
+	<link rel="stylesheet" href="MDB/css/mdb.min.css">
+	<!-- Your custom styles (optional) -->
+	<link href="MDB/css/addons/datatables.min.css" rel="stylesheet">
+    
+	
+	<!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
   
@@ -38,10 +46,11 @@ header ("location:login.php");
 th, td{
 text-align:center;
 font-size:11px;
+
 }
 th{
 color:#E85A4F;
-
+font-weight:bold !important;
 }
 .table-responsive {
     display:block;
@@ -61,13 +70,18 @@ padding-top:15px;
   clear: both;
   width: 100%;
 }
-
+a{
+	color:white !important;
+}
+a:hover{
+	color:blue !important;
+}
 </style>
 </head>
 <body>
 <?php include('sidebar.php');?>
 <div class="overlay"></div>
-<nav id="upar" class="navbar navbar-expand-lg   fixed-top">
+<nav id="upar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 	<div class="container-fluid">
 		<button type="button" id="sidebarCollapse" class="btn btn-info">
 			<i class="fas fa-align-left"></i>
@@ -76,15 +90,15 @@ padding-top:15px;
 		
 	</div>
 </nav>
-<br>
-<br>
-<br>
-<br>
+			<br>
+			<br>
+			<br>
+			<br>
 <div class="container-fluid old">
 
 	<div class="row sub" style="margin-top:2%;">
 		<div class="col-sm-12 horizontal-scroll">
-			<table class="table table-responsive w-100 d-block d-md-table" style="width:100%;">
+			<table class="sortable table table-striped table-bordered table-responsive w-100 d-block d-md-table " id="dtBasicExample" style="width:100%;">
 				<thead>
 				<th>Sr. No.</th>
 				<th>School Name</th>
@@ -144,16 +158,37 @@ padding-top:15px;
 		</div>
 	</div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+	 
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="MDB/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="MDB/js/mdb.min.js"></script>
+	<!-- Your custom scripts (optional) -->
+	<script type="text/javascript">
+	$(document).ready(function () {
+	$('#dtBasicExample').DataTable();
+	$('.dataTables_length').addClass('bs-select');
+	});
+	</script>
+
+	<!-- MDBootstrap Datatables  -->
+	<script type="text/javascript" src="MDB/js/addons/datatables.min.js"></script>
+
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
+			
+			
+			
             $("#sidebar").mCustomScrollbar({
                 theme: "minimal"
             });
