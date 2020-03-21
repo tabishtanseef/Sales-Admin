@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin_id'])) {
 header ("location:login.php");
 }
 $error = false;
-
 if(isset($_GET['salesman']) && isset($_GET['state']) && isset($_GET['city']))
 {
 	$state =$_GET['state'];
@@ -42,28 +41,25 @@ if (isset($_POST['go'])) {
 		$state = mysqli_real_escape_string($conn, $_POST['school_state']);	
 	}
 	if(!isset($_POST['city'])){
-	$error = true;
+		$error = true;
 	}
 	else{
 		$city = mysqli_real_escape_string($conn, $_POST['city']);
 	}
 	if(!isset($_POST['salesman'])){
-	$error = true;
+		$error = true;
 	}
 	else{
-			$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
+		$salesman = mysqli_real_escape_string($conn, $_POST['salesman']);
 	}
 	if(!$error){
-		header ("location:school_list.php?salesman=$salesman&state=$state&city=$city");
-		
+		header ("location:school_list.php?salesman=$salesman&state=$state&city=$city");	
 	}
-	
 }
 function school($run_attendance) {
 	$n=1;
 while($row_attendance=mysqli_fetch_array($run_attendance))
 	{
-		
 		$salesman = $row_attendance['user_name'];
 		$school_id = $row_attendance['id'];
 		$school_name = $row_attendance['school_name'];
@@ -76,8 +72,6 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		$school_city = $row_attendance['school_city'];
 		$school_state = $row_attendance['school_state'];
 		
-		
-		
 		echo "<tr title='$salesman'>
 		<td>$n</td>
 		<td class='link'>$school_name</td>
@@ -89,20 +83,13 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		<td>$school_address</td>
 		<td>$school_city</td>
 		<td>$school_state</td>
-		
-		
-		</tr>
-		
+		</tr>		
 		";
 	  $n++; 
 	}	
-	
-	
 }
 ?>
-
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,22 +146,16 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 		color:#E85A4F;
 		text-align:left;
 	}
-
 	</style>
 </head>
-
 <body>
-
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <?php include('sidebar.php');?>
-
         <!-- Page Content Holder -->
         <div id="content">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
                         <span></span>
                         <span></span>
@@ -200,11 +181,9 @@ while($row_attendance=mysqli_fetch_array($run_attendance))
 									  <?php
 									  }
 									  ?>
-									
 									</select>
 									<span class="text-danger"><?php if (isset($state_error)) echo $state_error; ?></span>
 								</div>
-								
                             </li>
 							&nbsp;&nbsp;
 							<li class="nav-item active">
